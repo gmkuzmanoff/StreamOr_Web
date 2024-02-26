@@ -14,11 +14,9 @@ namespace StreamOr_Web.Controllers
 	public class RadioController : Controller
 	{
 		private readonly IRadioService radioService;
-        private readonly StreamorDbContext context;
         private ILogger<RadioController> logger;
-		public RadioController(StreamorDbContext context,IRadioService radioService, ILogger<RadioController> logger)
+		public RadioController(IRadioService radioService, ILogger<RadioController> logger)
 		{
-            this.context = context;
 			this.radioService = radioService;
             this.logger = logger;
 		}
@@ -50,24 +48,7 @@ namespace StreamOr_Web.Controllers
             await radioService.AddNewRadioAsync(model,userId);
             return RedirectToAction(nameof(Collection));
         }
-        //Delete
-        [HttpGet]
-        public async Task<IActionResult> Delete(string id)
-        {
-            var entity = await radioService.FindTargetAsync(id);
-            if (entity == null)
-            {
-                return BadRequest();
-            }
-            return View(entity);
-        }
-        [HttpPost]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            logger.LogInformation($"RADIO ID: {id}");
-            await radioService.DeleteEntityAsync(id);
-            return RedirectToAction(nameof(Collection));
-        }
+        
 
 
         private string GetUserId()

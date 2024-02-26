@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using StreamOr.Core.Contracts;
 using StreamOr.Core.Services;
 using StreamOr.Infrastructure.Data;
+using StreamOr_Web.Custom_Model_Binders;
+using StreamOr_Web.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
