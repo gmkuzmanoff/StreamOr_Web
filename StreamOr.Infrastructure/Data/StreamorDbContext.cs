@@ -14,7 +14,6 @@ namespace StreamOr.Infrastructure.Data
 
         public DbSet<Radio> Radios { get; set; }
         public DbSet<Group> Groups { get; set; }
-        //public DbSet<RadioParticipant> RadiosParticipants { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -59,6 +58,21 @@ namespace StreamOr.Infrastructure.Data
                 {
                     Id = 8,
                     Name = "Chrismas"
+                },
+                new Group()
+                {
+                    Id = 9,
+                    Name = "Pop"
+                },
+                new Group()
+                {
+                    Id = 10,
+                    Name = "News & Talk"
+                },
+                new Group()
+                {
+                    Id = 11,
+                    Name = "Religion"
                 }
                 );
 
