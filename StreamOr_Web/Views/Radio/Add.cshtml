@@ -1,0 +1,55 @@
+﻿@using StreamOr.Core.Models
+@model RadioFormViewModel
+@{
+    ViewBag.Title = "Add New Radio";
+}
+
+<h1 class="text-center">@ViewBag.Title</h1>
+<br />
+<br />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form asp-action="Add" method="post">
+            <div class="mb-3">
+                <label asp-for="@Model.Url" class="form-label-add-edit text-white">Radio URL *</label>
+                <input asp-for="@Model.Url" class="form-control" aria-required="true" />
+                <span asp-validation-for="@Model.Url" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Title" class="form-label-add-edit text-white">Title (optional)</label>
+                <input asp-for="@Model.Title" class="form-control" aria-required="false" />
+                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Genre" class="form-label-add-edit text-white">Genre (optional)</label>
+                <input asp-for="@Model.Genre" class="form-control" aria-required="false" />
+                <span asp-validation-for="@Model.Genre" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.LogoUrl" class="form-label-add-edit text-white">Logo URL (optional)</label>
+                <input asp-for="@Model.LogoUrl" class="form-control" aria-required="false" />
+                <span asp-validation-for="@Model.LogoUrl" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Group" class="form-label-add-edit text-white">Select Group</label>
+                <select asp-for="@Model.Group" class="form-control" aria-required="true">
+                    <option disabled selected value="">Select Group...</option>
+                    @foreach (var group in Model.Groups)
+                    {
+                        <option value="@group.Id">@group.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="@Model.Group" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-warning mb-2 w-100 p-3 fw-bold" type="submit" value="Add to collection" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,29 @@
+﻿@using StreamOr.Core.Models
+@using StreamOr.Infrastructure.Data.Models
+@model RadioViewModel
+@{
+}
+
+<div id="delete-dialog" class="">
+    <div class="modal-dialog">
+        <div class="modal-content bg-black">
+            <div class="modal-header">
+                <h1 class="fs-3">@Model.Title</h1>
+            </div>
+            <div class="delete-info m-3">
+                <h5 class="fs-6 text-white-50 fw-light"><span class="text-warning fs-6">Genre:</span>   @Model.Genre</h5>
+                <h5 class="fs-6 text-white-50 fw-light"><span class="text-warning fs-6">Added:</span>   @Model.AddedOn</h5>
+                <h5 class="fs-6 text-white-50 fw-light"><span class="text-warning fs-6">Group:</span>   @Model.Group</h5>
+                <p class="text-danger mt-3 fs-4">Are you sure you want to delete this Radio?</p>
+            </div>
+            <div class="modal-footer">
+                <a asp-action="Collection" type="button" class="btn btn-secondary">Cancel</a>
+                <form asp-action="DeleteConfirmed" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>
