@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using StreamOr.Core.Contracts;
 using StreamOr.Core.Services;
 
 namespace StreamOr_Web.Controllers
 {
+    [Authorize]
     public class DeleteRadioController : Controller
     {
         private readonly IRadioService radioService;

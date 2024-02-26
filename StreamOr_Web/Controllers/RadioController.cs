@@ -20,7 +20,7 @@ namespace StreamOr_Web.Controllers
 			this.radioService = radioService;
             this.logger = logger;
 		}
-		//Get Collection
+		
 		[HttpGet]
 		public async Task<IActionResult> Collection()
 		{
@@ -28,34 +28,10 @@ namespace StreamOr_Web.Controllers
             ICollection<RadioViewModel> model = await radioService.GetCollectionAsync(userId);
             return View(model);
 		}
-		//Add radio
-		[HttpGet]
-        public async Task<IActionResult> Add()
-		{
-            var model = new RadioFormViewModel();
-			model.Groups = await radioService.GetGroupsAsync();
-            return View(model);
-        }
-		[HttpPost]
-        public async Task<IActionResult> Add(RadioFormViewModel model)
-		{
-            string userId = GetUserId();
-            if (!ModelState.IsValid)
-            {
-                model.Groups = await radioService.GetGroupsAsync();
-                return View(model);
-            }
-            await radioService.AddNewRadioAsync(model,userId);
-            return RedirectToAction(nameof(Collection));
-        }
-        
-
 
         private string GetUserId()
         {
             return User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
         }
-
-        
     }
 }
