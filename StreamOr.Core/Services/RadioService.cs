@@ -1,18 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualBasic;
 using StreamOr.Core.Contracts;
 using StreamOr.Core.Models;
 using StreamOr.Infrastructure.Data;
 using StreamOr.Infrastructure.Data.Models;
-using System.Linq;
-using System.Net;
-using System.Security.Claims;
 using System.Web;
+using static StreamOr.Infrastructure.Constants.RadioMetadata;
 
 namespace StreamOr.Core.Services
 {
-    public class RadioService : IRadioService
+	public class RadioService : IRadioService
 	{
         private ILogger<RadioService> logger;
         private readonly StreamorDbContext context;
@@ -56,6 +53,10 @@ namespace StreamOr.Core.Services
             if (!context.Radios.Contains(entity))
             {
                 await context.Radios.AddAsync(entity);
+            }
+            else
+            {
+                
             }
             
             await context.SaveChangesAsync();
@@ -113,158 +114,12 @@ namespace StreamOr.Core.Services
         public async Task<Radio> DeleteEntityAsync(string id)
         {
             var radio = await context.Radios.FindAsync(HttpUtility.UrlDecode(id));
-            context.Radios.Remove(radio);
-            await context.SaveChangesAsync();
+            if (radio != null)
+            {
+				context.Radios.Remove(radio);
+				await context.SaveChangesAsync();
+			}
             return radio;
         }
-        /// <summary>
-        /// Get Title from metadata
-        /// </summary>
-        /// <param name="uri"></param>
-        /// <returns></returns>
-        public async Task<string> GetTitle(string uri)
-        {
-            string result = "";
-            HttpClient m_httpClient = new HttpClient();
-            HttpResponseMessage response = null;
-            m_httpClient.DefaultRequestHeaders.Add("icy-metadata", "1");
-            try
-            {
-                response = await m_httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead);
-                m_httpClient.DefaultRequestHeaders.Remove("icy-metadata");
-                if (response.IsSuccessStatusCode)
-                {
-                    IEnumerable<string> headerValues;
-                    if (response.Headers.TryGetValues("icy-name", out headerValues))
-                    {
-                        string metaIntString = headerValues.First();
-                        if (!string.IsNullOrEmpty(metaIntString))
-                        {
-                            result = metaIntString;
-                        }
-
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                result = null;
-            }
-            m_httpClient.Dispose();
-            return result;
-        }
-        /// <summary>
-        /// Get Genre from metadata
-        /// </summary>
-        /// <param name="uri"></param>
-        /// <returns></returns>
-        public async Task<string> GetGenre(string uri)
-        {
-            string result = "";
-            HttpClient m_httpClient = new HttpClient();
-            HttpResponseMessage response = null;
-            m_httpClient.DefaultRequestHeaders.Add("icy-metadata", "1");
-            try
-            {
-                response = await m_httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead);
-                m_httpClient.DefaultRequestHeaders.Remove("icy-metadata");
-
-                if (response.IsSuccessStatusCode)
-                {
-                    IEnumerable<string> headerValues;
-                    if (response.Headers.TryGetValues("icy-genre", out headerValues))
-                    {
-                        string metaIntString = headerValues.First();
-                        if (!string.IsNullOrEmpty(metaIntString))
-                        {
-                            result = metaIntString;
-                        }
-
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                result = null;
-            }
-            m_httpClient.Dispose();
-            return result;
-        }
-        /// <summary>
-        /// Get Bitrate from metadata
-        /// </summary>
-        /// <param name="uri"></param>
-        /// <returns></returns>
-        public async Task<string> GetBitrate(string uri)
-        {
-            string result = "";
-            HttpClient m_httpClient = new HttpClient();
-            HttpResponseMessage response = null;
-            m_httpClient.DefaultRequestHeaders.Add("icy-metadata", "1");
-            try
-            {
-                response = await m_httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead);
-                m_httpClient.DefaultRequestHeaders.Remove("icy-metadata");
-
-                if (response.IsSuccessStatusCode)
-                {
-                    IEnumerable<string> headerValues;
-                    if (response.Headers.TryGetValues("icy-br", out headerValues))
-                    {
-                        string metaIntString = headerValues.First();
-                        if (!string.IsNullOrEmpty(metaIntString))
-                        {
-                            result = metaIntString;
-                        }
-
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                result = null;
-            }
-            m_httpClient.Dispose();
-            return result;
-        }
-        /// <summary>
-        /// Get Description from metadata
-        /// </summary>
-        /// <param name="uri"></param>
-        /// <returns></returns>
-        public async Task<string> GetDescription(string uri)
-        {
-            string result = "";
-            HttpClient m_httpClient = new HttpClient();
-            HttpResponseMessage response = null;
-            m_httpClient.DefaultRequestHeaders.Add("icy-metadata", "1");
-            try
-            {
-                response = await m_httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead);
-                m_httpClient.DefaultRequestHeaders.Remove("icy-metadata");
-
-                if (response.IsSuccessStatusCode)
-                {
-                    IEnumerable<string> headerValues;
-                    if (response.Headers.TryGetValues("icy-description", out headerValues))
-                    {
-                        string metaIntString = headerValues.First();
-                        if (!string.IsNullOrEmpty(metaIntString))
-                        {
-                            result = metaIntString;
-                        }
-
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                result = null;
-            }
-            m_httpClient.Dispose();
-            return result;
-        }
-
-        
     }
 }

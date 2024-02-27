@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using StreamOr.Core.Contracts;
-using StreamOr.Core.Services;
 
 namespace StreamOr_Web.Controllers
 {
-    [Authorize]
+	[Authorize]
     public class DeleteRadioController : Controller
     {
         private readonly IRadioService radioService;
@@ -30,8 +28,8 @@ namespace StreamOr_Web.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            logger.LogInformation($"RADIO ID: {id}");
-            await radioService.DeleteEntityAsync(id);
+            var radio = await radioService.DeleteEntityAsync(id);
+            if(radio == null) { BadRequest(); }
             return RedirectToAction(nameof(RadioController.Collection),"Radio");
         }
     }
