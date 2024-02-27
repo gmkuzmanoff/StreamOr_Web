@@ -10,8 +10,8 @@ namespace StreamOr_Web.Controllers
     public class AddRadioController : Controller
     {
         private readonly IRadioService radioService;
-        private ILogger<RadioController> logger;
-        public AddRadioController(IRadioService radioService, ILogger<RadioController> logger)
+        private ILogger<AddRadioController> logger;
+        public AddRadioController(IRadioService radioService, ILogger<AddRadioController> logger)
         {
             this.radioService = radioService;
             this.logger = logger;

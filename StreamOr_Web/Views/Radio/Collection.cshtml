@@ -18,7 +18,7 @@
                 <div class="card h-100 w-100">
                     @if (Boolean.Parse(radio.IsFavorite))
                     {
-                        <p class="card-img-overlay fs-3 text-end" style="margin:-0.5em;width:2px;">💚</p>
+                        <p class="card-img-overlay fs-6 text-end" style="margin-top:7.8em; margin-left:-1.7em;width:2px;">💚</p>
                     }  
                     <img id="card-image" src="@radio.LogoUrl" class="card-img-top bg-black" style="object-fit:contain;max-height:150px;width:100%;" alt="...">
                     <div class="card-body" style="max-height:10em;">
@@ -29,10 +29,13 @@
                         <p id="card-genre" class="text-white" style="font-size:12px;">@radio.Genre</p>
                     </div>
                     <div class="card-img-overlay" style="height:20em;"></div>
-                    <div class="card-footer d-flex justify-content-between align-items-start gap-1">
+                    <div class="card-footer d-flex justify-content-between">
                         <button type="button" class="btn btn-outline-primary" style="font-size:0.9em;">▶ Listen</button>
-                        <button type="button" class="btn" style="font-size:0.8em;">✏️</button>
-                        <a asp-controller="DeleteRadio" asp-action="Delete" asp-route-id="@radio.Id" class="btn" style="font-size:0.8em;">❌</a>
+                        <div class="d-flex">
+                            <a type="button" class="btn fs-6" style="font-size:0.8em;">✏️</a>
+                            <a asp-controller="Details" asp-action="Details" asp-route-id="@radio.Id" class="btn fs-6" style="font-size:0.8em;" title="Details">📄</a>
+                        </div>
+                        <a asp-controller="DeleteRadio" asp-action="Delete" asp-route-id="@radio.Id" class="btn card-img-overlay fs-5" title="Delete" style="margin-left:7.8em;height:1px; width:1px;line-height:1px;">❌</a>
                     </div>
                 </div>
             </div>

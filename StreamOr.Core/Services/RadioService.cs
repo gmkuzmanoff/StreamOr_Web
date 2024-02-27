@@ -92,11 +92,11 @@ namespace StreamOr.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<RadioViewModel> FindTargetAsync(string id)
+        public async Task<RadioDetailsViewModel> FindTargetAsync(string id)
         {
             return await context.Radios
                 .AsNoTracking()
-                .Select(x => new RadioViewModel()
+                .Select(x => new RadioDetailsViewModel()
                 {
                     Id = x.Id,
                     Title = x.Title,
@@ -104,7 +104,7 @@ namespace StreamOr.Core.Services
                     Description = x.Description,
                     IsFavorite = x.IsFavorite.ToString(),
                     Genre = x.Genre,
-                    AddedOn = x.AddedOn.ToShortDateString(),
+                    AddedOn = x.AddedOn.ToLongDateString(),
                     LogoUrl = x.LogoUrl,
                     Group = x.Group.Name
                 })

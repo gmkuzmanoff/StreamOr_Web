@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿                                                        using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StreamOr.Core.Contracts;
 
@@ -8,8 +8,8 @@ namespace StreamOr_Web.Controllers
     public class DeleteRadioController : Controller
     {
         private readonly IRadioService radioService;
-        private ILogger<RadioController> logger;
-        public DeleteRadioController(IRadioService radioService, ILogger<RadioController> logger)
+        private ILogger<DeleteRadioController> logger;
+        public DeleteRadioController(IRadioService radioService, ILogger<DeleteRadioController> logger)
         {
             this.radioService = radioService;
             this.logger = logger;

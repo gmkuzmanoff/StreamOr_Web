@@ -66,7 +66,7 @@
             }
         }
 
-        public string Description
+        public string Description 
         {
             get => description;
             set

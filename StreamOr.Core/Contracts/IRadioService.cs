@@ -7,7 +7,7 @@ namespace StreamOr.Core.Contracts
     {
         Task AddNewRadioAsync(RadioFormViewModel model, string userId);
         Task<Radio>  DeleteEntityAsync(string id);
-        Task<RadioViewModel> FindTargetAsync(string id);
+        Task<RadioDetailsViewModel> FindTargetAsync(string id);
         Task<ICollection<RadioViewModel>> GetCollectionAsync(string userId);
         Task<ICollection<GroupViewModel>> GetGroupsAsync();
     }
