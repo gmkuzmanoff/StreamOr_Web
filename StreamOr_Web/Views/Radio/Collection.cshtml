@@ -30,9 +30,9 @@
                     </div>
                     <div class="card-img-overlay" style="height:20em;"></div>
                     <div class="card-footer d-flex justify-content-between">
-                        <button type="button" class="btn btn-outline-primary" style="font-size:0.9em;">▶ Listen</button>
+                        <button type="button" class="btn btn-info border-2 border-dark" style="font-size:0.9em;">▶ Listen</button>
                         <div class="d-flex">
-                            <a type="button" class="btn fs-6" style="font-size:0.8em;">✏️</a>
+                            <a class="btn fs-6" style="font-size:0.8em;" title="Edit">✏️</a>
                             <a asp-controller="Details" asp-action="Details" asp-route-id="@radio.Id" class="btn fs-6" style="font-size:0.8em;" title="Details">📄</a>
                         </div>
                         <a asp-controller="DeleteRadio" asp-action="Delete" asp-route-id="@radio.Id" class="btn card-img-overlay fs-5" title="Delete" style="margin-left:7.8em;height:1px; width:1px;line-height:1px;">❌</a>

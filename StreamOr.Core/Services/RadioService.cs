@@ -74,7 +74,6 @@ namespace StreamOr.Core.Services
 					Description = x.Description,
 					Genre = x.Genre,
 					LogoUrl = x.LogoUrl,
-                    AddedOn = x.AddedOn.ToShortDateString(),
 					IsFavorite = x.IsFavorite.ToString().ToLower()
 				})
 				.ToListAsync();
@@ -106,7 +105,8 @@ namespace StreamOr.Core.Services
                     Genre = x.Genre,
                     AddedOn = x.AddedOn.ToLongDateString(),
                     LogoUrl = x.LogoUrl,
-                    Group = x.Group.Name
+                    Group = x.Group.Name,
+                    Bitrate = x.Bitrate.ToString()
                 })
                 .FirstOrDefaultAsync(x => x.Id == HttpUtility.UrlDecode(id));
         }

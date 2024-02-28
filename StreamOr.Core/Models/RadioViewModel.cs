@@ -14,8 +14,6 @@
 
         public string Id { get; set; } = string.Empty;
 
-        public string Url { get; set; } = string.Empty;
-
         public string Title
         {
             get => title;
@@ -30,8 +28,6 @@
         }
 
         public string IsFavorite { get; set; } = string.Empty;
-
-        public string AddedOn { get;set; } = string.Empty;
         
         public string LogoUrl
         {
@@ -73,14 +69,10 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    value = $"The best {genre} music in the world!";
+                    value = $"The best {Genre} music in the world!";
                 }
                 description = value;
             }
         }
-
-        public int Bitrate { get; set; }
-
-        public string Group { get; set; }
     }
 }
