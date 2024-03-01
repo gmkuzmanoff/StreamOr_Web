@@ -7,10 +7,6 @@
         private string logoUrl;
         private string description;
 
-        public RadioViewModel()
-        {
-
-        }
 
         public string Id { get; set; } = string.Empty;
 
@@ -56,7 +52,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    value = "various";
+                    value = $"various";
                 }
                 genre = value;
             }
@@ -69,7 +65,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    value = $"The best {Genre} music in the world!";
+                    value = $"The best {genre} music in the world!";
                 }
                 description = value;
             }

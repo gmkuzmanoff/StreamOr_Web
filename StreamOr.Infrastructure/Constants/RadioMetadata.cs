@@ -54,7 +54,6 @@
 						{
 							result = metaIntString;
 						}
-
 					}
 				}
 			}
@@ -118,8 +117,7 @@
 						{
 							result = metaIntString;
 						}
-
-					}
+                    }
 				}
 			}
 			catch (Exception)
