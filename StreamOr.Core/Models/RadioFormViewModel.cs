@@ -21,7 +21,7 @@ namespace StreamOr.Core.Models
         public string? LogoUrl { get; set; }
 
         public string? Genre { get; set; }
-        
+
         public bool IsFavorite { get; set; }
 
         public string? Bitrate { get; set; }

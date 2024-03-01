@@ -20,12 +20,10 @@ namespace StreamOr.Infrastructure.Data.Models
         public string Url { get; set; } = string.Empty;
 
         [Comment("Radio Title")]
-        [AllowNull]
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
         [Comment("Radio Description")]
-        [AllowNull]
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         [Required]
         [Comment("Radio Priority")]
@@ -36,15 +34,12 @@ namespace StreamOr.Infrastructure.Data.Models
         public DateTime AddedOn { get; set; }
 
         [Comment("Radio Logo")]
-        [AllowNull]
-        public string LogoUrl { get; set; }
+        public string LogoUrl { get; set; } = string.Empty;
 
         [Comment("Radio Genre")]
-        [AllowNull]
-        public string Genre { get; set; }
+        public string Genre { get; set; } = string.Empty;
 
         [Comment("Radio Bitrate")]
-        [AllowNull]
         public int Bitrate { get; set; }
 
         [Required]

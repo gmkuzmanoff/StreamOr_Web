@@ -12,8 +12,8 @@ using StreamOr.Infrastructure.Data;
 namespace StreamOr.Infrastructure.Migrations
 {
     [DbContext(typeof(StreamorDbContext))]
-    [Migration("20240224131356_Initials")]
-    partial class Initials
+    [Migration("20240301151159_CreateDatabase")]
+    partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -286,6 +286,21 @@ namespace StreamOr.Infrastructure.Migrations
                         {
                             Id = 8,
                             Name = "Chrismas"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Pop"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "News & Talk"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Religion"
                         });
                 });
 

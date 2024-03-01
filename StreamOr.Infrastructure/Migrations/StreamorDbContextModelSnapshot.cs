@@ -284,6 +284,21 @@ namespace StreamOr.Infrastructure.Migrations
                         {
                             Id = 8,
                             Name = "Chrismas"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Pop"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "News & Talk"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Religion"
                         });
                 });
 

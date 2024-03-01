@@ -25,15 +25,15 @@
                         <h5 class="card-title">@radio.Title</h5>
                         <p class="card-text" style="font-size:0.8em;">@radio.Description</p>
                     </div>
-                    <div class="card-footer bg-dark">
+                    <div class="card-footer bg-black" style="background-color:darkslateblue">
                         <p id="card-genre" class="text-white" style="font-size:12px;">@radio.Genre</p>
                     </div>
                     <div class="card-img-overlay" style="height:20em;"></div>
-                    <div class="card-footer d-flex justify-content-between">
+                    <div class="card-footer d-flex justify-content-between bg-dark">
                         <button type="button" class="btn btn-info border-2 border-dark" style="font-size:0.9em;">▶ Listen</button>
                         <div class="d-flex">
-                            <a class="btn fs-6" style="font-size:0.8em;" title="Edit">✏️</a>
-                            <a asp-controller="Details" asp-action="Details" asp-route-id="@radio.Id" class="btn fs-6" style="font-size:0.8em;" title="Details">📄</a>
+                            <a asp-controller="EditRadio" asp-action="Edit" asp-route-id="@radio.Id" class="btn fs-6" style="font-size:0.8em;" title="Edit">✏️</a>
+                            <a asp-controller="DetailsRadio" asp-action="Details" asp-route-id="@radio.Id" class="btn fs-6" style="font-size:0.8em;" title="Details">📄</a>
                         </div>
                         <a asp-controller="DeleteRadio" asp-action="Delete" asp-route-id="@radio.Id" class="btn card-img-overlay fs-5" title="Delete" style="margin-left:7.8em;height:1px; width:1px;line-height:1px;">❌</a>
                     </div>

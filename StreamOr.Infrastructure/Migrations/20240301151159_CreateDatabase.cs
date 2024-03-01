@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StreamOr.Infrastructure.Migrations
 {
-    public partial class Initials : Migration
+    public partial class CreateDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -174,13 +174,13 @@ namespace StreamOr.Infrastructure.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Radio Identity"),
                     Url = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false, comment: "Radio Url"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "Radio Title"),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "Radio Description"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "Radio Title"),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "Radio Description"),
                     IsFavorite = table.Column<bool>(type: "bit", nullable: false, comment: "Radio Priority"),
                     AddedOn = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Date on Adding"),
-                    LogoUrl = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "Radio Logo"),
-                    Genre = table.Column<string>(type: "nvarchar(max)", nullable: true, comment: "Radio Genre"),
-                    Bitrate = table.Column<int>(type: "int", nullable: true, comment: "Radio Bitrate"),
+                    LogoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "Radio Logo"),
+                    Genre = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "Radio Genre"),
+                    Bitrate = table.Column<int>(type: "int", nullable: false, comment: "Radio Bitrate"),
                     OwnerId = table.Column<string>(type: "nvarchar(450)", nullable: false, comment: "Owner Identity"),
                     GroupId = table.Column<int>(type: "int", nullable: false, comment: "Group Identity")
                 },
@@ -214,7 +214,10 @@ namespace StreamOr.Infrastructure.Migrations
                     { 5, "Jazz" },
                     { 6, "Ambient & Chillout" },
                     { 7, "Retro" },
-                    { 8, "Chrismas" }
+                    { 8, "Chrismas" },
+                    { 9, "Pop" },
+                    { 10, "News & Talk" },
+                    { 11, "Religion" }
                 });
 
             migrationBuilder.CreateIndex(

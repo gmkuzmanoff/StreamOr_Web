@@ -1,6 +1,7 @@
 ﻿                                                        using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StreamOr.Core.Contracts;
+using StreamOr.Core.Models;
 
 namespace StreamOr_Web.Controllers
 {
@@ -16,14 +17,15 @@ namespace StreamOr_Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(RadioDeleteViewModel model, string id)
         {
             var entity = await radioService.FindTargetAsync(id);
             if (entity == null)
             {
                 return BadRequest();
             }
-            return View(entity);
+            model.Title = entity.Title;
+            return View(model);
         }
         [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(string id)

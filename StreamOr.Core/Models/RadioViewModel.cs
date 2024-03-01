@@ -7,10 +7,14 @@
         private string logoUrl;
         private string description;
 
+        public RadioViewModel()
+        {
+
+        }
 
         public string Id { get; set; } = string.Empty;
 
-        public string Title
+        public string? Title
         {
             get => title;
             set
@@ -23,9 +27,9 @@
             }
         }
 
-        public string IsFavorite { get; set; } = string.Empty;
+        public string? IsFavorite { get; set; } = string.Empty;
         
-        public string LogoUrl
+        public string? LogoUrl
         {
             get => logoUrl;
             set
@@ -45,7 +49,7 @@
             }
         }
 
-        public string Genre
+        public string? Genre
         {
             get => genre;
             set
@@ -58,7 +62,7 @@
             }
         }
 
-        public string Description 
+        public string? Description 
         {
             get => description;
             set

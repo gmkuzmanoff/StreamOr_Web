@@ -62,6 +62,39 @@ namespace StreamOr.Core.Services
             await context.SaveChangesAsync();
         }
 
+        public async Task EditRadioAsync(RadioFormViewModel model, string userId)
+        {
+            var entity = await context.Radios.FindAsync(HttpUtility.UrlDecode(model.Id));
+			entity.Url = model.Url;
+            if (string.IsNullOrEmpty(model.Genre))
+            {
+                model.Genre = await GetGenre(model.Url);
+            }
+            entity.Genre = model.Genre;
+            if (string.IsNullOrEmpty(model.Title))
+            {
+                model.Title = await GetTitle(model.Url);
+            }
+            entity.Title = model.Title;
+            string br = await GetBitrate(model.Url);
+            if (string.IsNullOrEmpty(br))
+            {
+                br = "128";
+            }
+            entity.Bitrate = int.Parse(br);
+            entity.Description = await GetDescription(model.Url);
+            entity.IsFavorite = false;
+            if (string.IsNullOrEmpty(model.LogoUrl))
+            {
+                model.LogoUrl = string.Empty;
+            }
+            entity.LogoUrl = model.LogoUrl;
+            entity.GroupId = model.Group;
+            entity.AddedOn = DateTime.Now;
+
+            await context.SaveChangesAsync();
+        }
+
         public async Task<ICollection<RadioViewModel>> GetCollectionAsync(string userId)
         {
 			return await context.Radios
@@ -71,9 +104,9 @@ namespace StreamOr.Core.Services
 				{
                     Id = x.Id,
 					Title = x.Title,
-					Description = x.Description,
-					Genre = x.Genre,
-					LogoUrl = x.LogoUrl,
+                    Genre = x.Genre,
+                    Description = x.Description,
+                    LogoUrl = x.LogoUrl,
 					IsFavorite = x.IsFavorite.ToString().ToLower()
 				})
 				.ToListAsync();
@@ -91,22 +124,22 @@ namespace StreamOr.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<RadioDetailsViewModel> FindTargetAsync(string id)
+        public async Task<Radio> FindTargetAsync(string id)
         {
             return await context.Radios
                 .AsNoTracking()
-                .Select(x => new RadioDetailsViewModel()
+                .Select(x => new Radio()
                 {
                     Id = x.Id,
                     Title = x.Title,
                     Url = x.Url,
-                    Description = x.Description,
-                    IsFavorite = x.IsFavorite.ToString(),
                     Genre = x.Genre,
-                    AddedOn = x.AddedOn.ToLongDateString(),
+                    Description = x.Description,
+                    IsFavorite = x.IsFavorite,
+                    AddedOn = x.AddedOn,
                     LogoUrl = x.LogoUrl,
-                    Group = x.Group.Name,
-                    Bitrate = x.Bitrate.ToString()
+                    Group = x.Group,
+                    Bitrate = x.Bitrate
                 })
                 .FirstOrDefaultAsync(x => x.Id == HttpUtility.UrlDecode(id));
         }

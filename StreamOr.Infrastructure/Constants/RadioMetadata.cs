@@ -28,7 +28,7 @@
 			}
 			catch (Exception)
 			{
-				result = null;
+				
 			}
 			m_httpClient.Dispose();
 			return result;
@@ -59,7 +59,7 @@
 			}
 			catch (Exception)
 			{
-				result = null;
+			
 			}
 			m_httpClient.Dispose();
 			return result;
@@ -85,13 +85,12 @@
 						{
 							result = metaIntString;
 						}
-
 					}
 				}
 			}
 			catch (Exception)
 			{
-				result = null;
+				
 			}
 			m_httpClient.Dispose();
 			return result;
@@ -122,7 +121,7 @@
 			}
 			catch (Exception)
 			{
-				result = null;
+			
 			}
 			m_httpClient.Dispose();
 			return result;
