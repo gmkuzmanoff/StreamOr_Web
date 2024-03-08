@@ -1,0 +1,17 @@
+﻿@model RadioPlayerViewModel
+
+@{
+	ViewBag.Title = $"Player";
+}
+
+<br />
+<hr />
+<div class="d-flex justify-content-start align-items-start gap-4">
+	<img class="img w-25 border border-4 rounded-3 border-warning" src="@Model.LogoUrl" />
+	<div class="">
+		<h1 class="text-info"><strong>@Model.Title</strong></h1>
+		<h3 class="">@Model.Genre</h3>
+		<audio src="@Model.Url"/>
+		
+	</div>
+</div>

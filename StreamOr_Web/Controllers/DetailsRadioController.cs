@@ -10,6 +10,7 @@ namespace StreamOr_Web.Controllers
     {
         private readonly IRadioService radioService;
         private ILogger<DetailsRadioController> logger;
+
         public DetailsRadioController(IRadioService radioService, ILogger<DetailsRadioController> logger)
         {
             this.radioService = radioService;

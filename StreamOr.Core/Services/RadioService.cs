@@ -154,5 +154,24 @@ namespace StreamOr.Core.Services
 			}
             return radio;
         }
+
+        public async Task<RadioPlayerViewModel> GetPlayerContentAsync(string userId)
+        {
+            return await context.Radios
+                .AsNoTracking()
+                .Where(x => x.OwnerId == userId)
+                .Select(x => new RadioPlayerViewModel()
+                {
+                    Id= x.Id,
+                    Title = x.Title,
+                    Url = x.Url,
+                    Genre = x.Genre,
+                    Description = x.Description,
+                    LogoUrl= x.LogoUrl,
+                    IsFavorite = x.IsFavorite.ToString().ToLower(),
+                    Bitrate = x.Bitrate.ToString()
+                })
+                .FirstOrDefaultAsync();
+        }
     }
 }

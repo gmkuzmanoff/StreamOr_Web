@@ -10,7 +10,9 @@ namespace StreamOr_Web.Controllers
     {
         private readonly IRadioService radioService;
         private ILogger<DeleteRadioController> logger;
-        public DeleteRadioController(IRadioService radioService, ILogger<DeleteRadioController> logger)
+        public DeleteRadioController(
+            IRadioService radioService, 
+            ILogger<DeleteRadioController> logger)
         {
             this.radioService = radioService;
             this.logger = logger;

@@ -10,6 +10,7 @@ namespace StreamOr.Core.Contracts
         Task<Radio> DeleteEntityAsync(string id);
         Task<Radio> FindTargetAsync(string id);
         Task<ICollection<RadioViewModel>> GetCollectionAsync(string userId);
+        Task<RadioPlayerViewModel> GetPlayerContentAsync(string userId);
         Task<ICollection<GroupViewModel>> GetGroupsAsync();
     }
 }
