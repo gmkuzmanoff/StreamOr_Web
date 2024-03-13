@@ -120,7 +120,7 @@ namespace StreamOr_Web.Controllers
         {
             WebClient webClient = new WebClient();
             string username = "streamor.free.bg";
-            string password = "SlipKnoT0543";
+            string password = "";
             webClient.Credentials = new NetworkCredential(username, password);
             webClient.UploadFile(ftpServerAddress, fileToUpload);
         }
