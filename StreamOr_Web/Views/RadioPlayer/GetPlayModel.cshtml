@@ -1,0 +1,38 @@
+﻿@model RadioPlayerViewModel
+@{
+    ViewBag.Title = "Radio Player";
+}
+
+<div b-59i2a63ekl class="container">
+    <main b-59i2a63ekl role="main" class="pb-3">
+        <h1 class="text-success">@ViewBag.Title</h1>
+        <br />
+        <br />
+        <body class="bg-dark">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="@Model.LogoUrl" class="img-fluid rounded-start" alt="...">
+                        <div class="card-footer d-flex justify-content-start align-items-start gap-3 bg-primary">
+                            <a asp-controller="RadioPlayer" asp-action="PlayInNewTab" asp-route-url="@Model.Url" class="btn btn-dark">Play in new tab</a>
+                            <a asp-controller="RadioPlayer" asp-action="GetPlaylist" asp-route-id="@Model.Id" class="btn btn-dark">Download .m3u</a>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title fs-2">@Model.Title</h5>
+                            <p class="card-text fs-5">@Model.Genre</p>
+                            <p class="card-text"><small class="text-body-secondary">@Model.Description</small></p>
+                            <p class="card-text">@Model.Bitrate<small class="text-body-secondary"> Kbps</small></p>
+                            
+                        </div>
+                    </div>
+
+                    <div class="card-footer d-flex justify-content-between">
+                        <audio class="w-100" src="@Model.Url" controls autoplay></audio>
+                    </div>
+                </div>
+            </div>
+        </body>
+    </main>
+</div>

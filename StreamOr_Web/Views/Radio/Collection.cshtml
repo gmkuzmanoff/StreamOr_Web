@@ -27,7 +27,7 @@
                     </div>
                     <div class="card-img-overlay" style="height:20em;"></div>
                     <div class="card-footer d-flex justify-content-between bg-dark">
-                        <a asp-controller="RadioPlayer" asp-action="Play" asp-route-id="@radio.Id" class="btn btn-info border-3 border-dark" style="font-size:0.9em;">▶ Listen</a>
+                        <a asp-controller="RadioPlayer" asp-action="GetPlayModel" asp-route-id="@radio.Id" class="btn btn-info border-3 border-dark" style="font-size:0.9em;">▶ Listen</a>
                         <div class="d-flex">
                             <a asp-controller="EditRadio" asp-action="Edit" asp-route-id="@radio.Id" class="btn fs-6" style="font-size:0.8em;" title="Edit">✏️</a>
                             <a asp-controller="DetailsRadio" asp-action="Details" asp-route-id="@radio.Id" class="btn fs-6" style="font-size:0.8em;" title="Details">📄</a>
@@ -48,4 +48,4 @@
 
 
 
-    
+    @* asp-controller="RadioPlayer" asp-action="GetPlayModel" asp-route-id="@radio.Id" *@

@@ -22,7 +22,6 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 })
     .AddEntityFrameworkStores<StreamorDbContext>();
 builder.Services.AddControllersWithViews();
-
 // Add services to the container.
 builder.Services.AddScoped<IRadioService, RadioService>();
 

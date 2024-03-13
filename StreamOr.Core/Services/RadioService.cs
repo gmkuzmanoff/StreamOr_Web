@@ -4,6 +4,8 @@ using StreamOr.Core.Contracts;
 using StreamOr.Core.Models;
 using StreamOr.Infrastructure.Data;
 using StreamOr.Infrastructure.Data.Models;
+using System.Net.Http.Headers;
+using System.Net;
 using System.Web;
 using static StreamOr.Infrastructure.Constants.RadioMetadata;
 
@@ -106,6 +108,7 @@ namespace StreamOr.Core.Services
 					Title = x.Title,
                     Genre = x.Genre,
                     Description = x.Description,
+                    OwnerId = userId,
                     LogoUrl = x.LogoUrl,
 					IsFavorite = x.IsFavorite.ToString().ToLower()
 				})
@@ -134,6 +137,8 @@ namespace StreamOr.Core.Services
                     Title = x.Title,
                     Url = x.Url,
                     Genre = x.Genre,
+                    OwnerId=x.OwnerId,
+                    Owner = x.Owner,
                     Description = x.Description,
                     IsFavorite = x.IsFavorite,
                     AddedOn = x.AddedOn,
@@ -173,5 +178,6 @@ namespace StreamOr.Core.Services
                 })
                 .FirstOrDefaultAsync();
         }
-    }
+
+	}
 }

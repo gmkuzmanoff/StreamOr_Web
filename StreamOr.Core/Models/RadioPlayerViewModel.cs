@@ -31,6 +31,10 @@
 
         public string IsFavorite { get; set; } = string.Empty;
 
+		public string OwnerId { get; set; } = string.Empty;
+
+        public string Group { get; set; } = string.Empty;
+
         public string LogoUrl
         {
             get => logoUrl;
