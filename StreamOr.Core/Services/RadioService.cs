@@ -179,5 +179,19 @@ namespace StreamOr.Core.Services
                 .FirstOrDefaultAsync();
         }
 
-	}
+        public async Task EditIsFavoriteAsync(RadioPlayerViewModel model, string userId)
+        {
+            var entity = await context.Radios.FindAsync(HttpUtility.UrlDecode(model.Id));
+            if (entity != null)
+            {
+                if (entity.IsFavorite)
+                {
+                    entity.IsFavorite = false;
+                }
+                else { entity.IsFavorite = true; }
+            }
+            
+            await context.SaveChangesAsync();
+        }
+    }
 }

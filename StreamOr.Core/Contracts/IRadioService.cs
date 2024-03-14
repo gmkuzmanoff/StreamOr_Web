@@ -12,6 +12,8 @@ namespace StreamOr.Core.Contracts
         Task<ICollection<RadioViewModel>> GetCollectionAsync(string userId);
         Task<RadioPlayerViewModel> GetPlayerContentAsync(string userId);
         Task<ICollection<GroupViewModel>> GetGroupsAsync();
+        Task EditIsFavoriteAsync(RadioPlayerViewModel model, string userId);
 
-	}
+
+    }
 }
