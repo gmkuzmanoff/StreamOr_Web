@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using StreamOr.Core.Contracts;
 using StreamOr.Core.Models;
+using System.Security.Claims;
 
 namespace StreamOr_Web.Controllers
 {
@@ -20,8 +21,9 @@ namespace StreamOr_Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(RadioDetailsViewModel model, string id)
         {
+            string userId = GetUserId();
             var entity = await radioService.FindTargetAsync(id);
-            if (entity == null)
+            if (entity == null || entity.OwnerId != userId)
             {
                 return BadRequest();
             }
@@ -34,6 +36,11 @@ namespace StreamOr_Web.Controllers
             model.Group = entity.Group.Name;
             model.IsFavorite = entity.IsFavorite.ToString();
             return View(model);
+        }
+
+        private string GetUserId()
+        {
+            return User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
         }
     }
 }

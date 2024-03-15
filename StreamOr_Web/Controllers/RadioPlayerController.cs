@@ -17,18 +17,20 @@ namespace StreamOr_Web.Controllers
         private readonly IRadioService radioService;
         private ILogger<RadioPlayerController> logger;
 
-        public RadioPlayerController(IRadioService radioService, ILogger<RadioPlayerController> logger)
+        public RadioPlayerController(
+            IRadioService radioService, 
+            ILogger<RadioPlayerController> logger)
         {
             this.radioService = radioService;
             this.logger = logger;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetPlayModel(string id)
+        public async Task<IActionResult> Play(string id)
         {
             string userId = GetUserId();
 			var entity = await radioService.FindTargetAsync(id);
-            if (entity == null)
+            if (entity == null || entity.OwnerId != userId)
             {
                 return BadRequest();
             }
@@ -45,7 +47,7 @@ namespace StreamOr_Web.Controllers
                 IsFavorite = entity.IsFavorite.ToString().ToLower(),
                 Bitrate = entity.Bitrate.ToString()
             };
-            //Create local user directory
+            //Create local user directory if not exist already
             string localUserDir = $"{Environment.CurrentDirectory}\\files\\{userId}";
             Directory.CreateDirectory(localUserDir);
 
@@ -62,7 +64,7 @@ namespace StreamOr_Web.Controllers
         {
             string userId = GetUserId();
             var entity = await radioService.FindTargetAsync(id);
-            if (entity == null)
+            if (entity == null || entity.OwnerId != userId)
             {
                 //return BadRequest();
             }
@@ -96,13 +98,13 @@ namespace StreamOr_Web.Controllers
 
             var entity = await radioService.FindTargetAsync(model.Id);
 
-            if (entity == null)
+            if (entity == null || entity.OwnerId != userId)
             {
                return BadRequest();
             }
 
             await radioService.EditIsFavoriteAsync(model, userId);
-            return RedirectToAction(nameof(GetPlayModel), new {id=model.Id});
+            return RedirectToAction(nameof(Play), new {id=model.Id});
         }
 
         private string GetUserId()

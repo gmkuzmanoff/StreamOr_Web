@@ -17,15 +17,15 @@
                             <form asp-action="EditIsFavorite" method="post">
                                 @if (Model.IsFavorite == "false")
                                 {
-                                    <input asp-controller="RadioPlayer" asp-action="EditIsFavorite" asp-route-id="@Model.Id" type="submit" class="btn btn-dark" value="🤍" />
+                                    <input asp-controller="RadioPlayer" asp-action="EditIsFavorite" asp-route-id="@Model.Id" type="submit" title="Add @Model.Title to your favorite radio stations" class="btn btn-dark" value="🤍" />
                                 }
                                 else
                                 {
-                                    <input asp-controller="RadioPlayer" asp-action="EditIsFavorite" asp-route-id="@Model.Id" type="submit" class="btn btn-dark" value="💚" />
+                                    <input asp-controller="RadioPlayer" asp-action="EditIsFavorite" asp-route-id="@Model.Id" type="submit" title="Remove @Model.Title from your favorite radio stations" class="btn btn-dark" value="💚" />
                                 }
                             </form>
-                            <a asp-controller="RadioPlayer" asp-action="PlayInNewTab" asp-route-url="@Model.Url" class="btn btn-dark">Play in new tab</a>
-                            <a asp-controller="RadioPlayer" asp-action="GetPlaylist" asp-route-id="@Model.Id" class="btn btn-dark" title="Play in local player (etc. VLC, Winamp, WMP ...)">Download .m3u</a>
+                            <a asp-controller="RadioPlayer" asp-action="PlayInNewTab" asp-route-url="@Model.Url" class="btn text-warning btn-dark">Play in new tab</a>
+                            <a asp-controller="RadioPlayer" asp-action="GetPlaylist" asp-route-id="@Model.Id" class="btn text-warning btn-dark" title="Play in local player (etc. VLC, Winamp, WMP ...)">Download .m3u</a>
                         </div>
                     </div>
                     <div class="col-md-8">

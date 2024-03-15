@@ -24,9 +24,10 @@ namespace StreamOr_Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
+            string userId = GetUserId();
             var entity = await radioService.FindTargetAsync(id);
 
-            if (entity == null)
+            if (entity == null || entity.OwnerId != userId)
             {
                 return BadRequest();
             }
