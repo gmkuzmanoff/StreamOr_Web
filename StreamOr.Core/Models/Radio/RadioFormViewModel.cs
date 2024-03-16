@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using static StreamOr.Infrastructure.Constants.ValidationConstants;
 
-namespace StreamOr.Core.Models
+namespace StreamOr.Core.Models.Radio
 {
     public class RadioFormViewModel
     {
@@ -13,8 +13,8 @@ namespace StreamOr.Core.Models
         [StringLength(RadioUrlMaxL, MinimumLength = RadioUrlMinL, ErrorMessage = StringLengthErrorMessage)]
         [DisplayName("Radio URL")]
         public string Url { get; set; } = string.Empty;
-        
-        public string? Title {  get; set; }
+
+        public string? Title { get; set; }
 
         public string? Description { get; set; }
 

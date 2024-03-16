@@ -1,7 +1,7 @@
-﻿namespace StreamOr.Core.Models
+﻿namespace StreamOr.Core.Models.Radio
 {
     public class RadioViewModel
-	{
+    {
         private string title;
         private string genre;
         private string logoUrl;
@@ -28,7 +28,7 @@
         }
 
         public string? IsFavorite { get; set; } = string.Empty;
-        
+
         public string? LogoUrl
         {
             get => logoUrl;
@@ -64,7 +64,7 @@
             }
         }
 
-        public string? Description 
+        public string? Description
         {
             get => description;
             set

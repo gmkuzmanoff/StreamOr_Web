@@ -1,13 +1,12 @@
-﻿namespace StreamOr.Core.Models
+﻿namespace StreamOr.Core.Models.Radio
 {
-    public class RadioPlayerViewModel
+    public class RadioDetailsViewModel
     {
         private string title;
         private string genre;
         private string description;
-        private string logoUrl;
 
-        public RadioPlayerViewModel()
+        public RadioDetailsViewModel()
         {
 
         }
@@ -31,31 +30,13 @@
 
         public string IsFavorite { get; set; } = string.Empty;
 
-		public string OwnerId { get; set; } = string.Empty;
+        public string AddedOn { get; set; } = string.Empty;
 
-        public string Group { get; set; } = string.Empty;
-
-        public string LogoUrl
-        {
-            get => logoUrl;
-            set
-            {
-                string[] images = { "https://gmkuzmanoff.free.bg/images/STREAMOR/P1.jpg",
-                "https://gmkuzmanoff.free.bg/images/STREAMOR/P2.jpg",
-                "https://gmkuzmanoff.free.bg/images/STREAMOR/P3.jpg",
-                "https://gmkuzmanoff.free.bg/images/STREAMOR/P4.jpg",
-                "https://gmkuzmanoff.free.bg/images/STREAMOR/P5.jpg",
-                "https://gmkuzmanoff.free.bg/images/STREAMOR/P6.jpg"};
-                int random = new Random().Next(0, 5);
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    value = images[random];
-                }
-                logoUrl = value;
-            }
-        }
+        public string LogoUrl { get; set; } = string.Empty;
 
         public string Bitrate { get; set; } = string.Empty;
+
+        public string Group { get; set; } = string.Empty;
 
         public string Genre
         {

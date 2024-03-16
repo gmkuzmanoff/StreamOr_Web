@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StreamOr.Core.Contracts;
-using StreamOr.Core.Models;
+using StreamOr.Core.Models.Radio;
 using System.Security.Claims;
 
 namespace StreamOr_Web.Controllers

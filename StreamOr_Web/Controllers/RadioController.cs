@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StreamOr.Core.Contracts;
-using StreamOr.Core.Models;
+using StreamOr.Core.Models.Radio;
 using StreamOr.Infrastructure.Data;
 using StreamOr.Infrastructure.Data.Models;
 using System.Security.Claims;
@@ -10,7 +10,7 @@ using System.Web;
 
 namespace StreamOr_Web.Controllers
 {
-	[Authorize]
+    [Authorize]
 	public class RadioController : Controller
 	{
 		private readonly IRadioService radioService;
@@ -28,6 +28,12 @@ namespace StreamOr_Web.Controllers
 			string userId = GetUserId();
             ICollection<RadioViewModel> model = await radioService.GetCollectionAsync(userId);
             return View(model);
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> All([FromQuery]RadioViewModel model)
+		{
+			return Ok();
 		}
 
         private string GetUserId()

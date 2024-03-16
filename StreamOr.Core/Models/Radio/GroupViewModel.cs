@@ -1,4 +1,4 @@
-﻿namespace StreamOr.Core.Models
+﻿namespace StreamOr.Core.Models.Radio
 {
     public class GroupViewModel
     {

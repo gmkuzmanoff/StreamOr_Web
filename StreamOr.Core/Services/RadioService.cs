@@ -1,17 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using StreamOr.Core.Contracts;
-using StreamOr.Core.Models;
+using StreamOr.Core.Models.Radio;
 using StreamOr.Infrastructure.Data;
 using StreamOr.Infrastructure.Data.Models;
-using System.Net.Http.Headers;
-using System.Net;
 using System.Web;
 using static StreamOr.Infrastructure.Constants.RadioMetadata;
 
 namespace StreamOr.Core.Services
 {
-	public class RadioService : IRadioService
+    public class RadioService : IRadioService
 	{
         private ILogger<RadioService> logger;
         private readonly StreamorDbContext context;

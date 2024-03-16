@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using StreamOr.Core.Contracts;
-using StreamOr.Core.Models;
+using StreamOr.Core.Models.Radio;
 using StreamOr.Infrastructure.Constants;
 using System.Globalization;
 using System.Security.Claims;

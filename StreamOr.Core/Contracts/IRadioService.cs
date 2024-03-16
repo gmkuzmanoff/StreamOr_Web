@@ -1,4 +1,4 @@
-﻿using StreamOr.Core.Models;
+﻿using StreamOr.Core.Models.Radio;
 using StreamOr.Infrastructure.Data.Models;
 
 namespace StreamOr.Core.Contracts
