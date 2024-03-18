@@ -159,7 +159,7 @@ namespace StreamOr.Core.Services
             return radio;
         }
 
-        public async Task<RadioPlayerViewModel> GetPlayerContentAsync(string userId)
+        public async Task<RadioPlayerViewModel> GetPlayerContentAsync(string? userId)
         {
             return await context.Radios
                 .AsNoTracking()
