@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using StreamOr.Core.Contracts;
 using StreamOr.Core.Models.Radio;
-using StreamOr.Infrastructure.Data;
-using StreamOr.Infrastructure.Data.Models;
 using System.Security.Claims;
-using System.Web;
 
 namespace StreamOr_Web.Controllers
 {
@@ -23,17 +19,22 @@ namespace StreamOr_Web.Controllers
 		}
 		
 		[HttpGet]
-		public async Task<IActionResult> Collection()
-		{
+		public async Task<IActionResult> Collection([FromQuery]AllRadiosQueryModel query)
+		{ 
 			string userId = GetUserId();
-            ICollection<RadioViewModel> model = await radioService.GetCollectionAsync(userId);
-            return View(model);
-		}
+            var model = await radioService.AllAsync(
+                query.Group,
+                query.SearchTerm,
+                query.Sorting,
+                query.CurrentPage,
+                query.RadiosPerPage,
+                userId
+                );
 
-		[HttpGet]
-		public async Task<IActionResult> All([FromQuery]RadioViewModel model)
-		{
-			return Ok();
+            query.Radios = model.Radios;
+            query.TotalRadiosCount = model.TotalRadiosCount;
+            query.Groups = await radioService.AllGroupsNamesAsync();
+            return View(query);
 		}
 
         private string GetUserId()

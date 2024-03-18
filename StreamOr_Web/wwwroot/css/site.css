@@ -38,7 +38,7 @@ a,
 button,
 h1,
 h2,
-h3 {
+h3{
   font-family: "Roboto Condensed", sans-serif;
   font-optical-sizing: auto;
   font-weight: 300;
@@ -47,18 +47,21 @@ h3 {
   color: darkcyan;
 }
 
-#app-greeting{
-  color: whitesmoke;
-  font-size: 19px;
-  font-family: "Roboto Condensed", sans-serif;
-  font-style: italic;
-  text-transform: uppercase;
+#app-greeting
+{
+    color: whitesmoke;
+    font-size: 19px;
+    font-family: "Roboto Condensed", sans-serif;
+    font-style: italic;
+    text-transform: uppercase;
 }
 
-#about-list>li{
-  color: white;
-  font-family: "Roboto Condensed", sans-serif;
-  font-optical-sizing: auto;
+#about-list > li,
+label,
+input{
+    color: white;
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
 }
 
 .col-md-6,

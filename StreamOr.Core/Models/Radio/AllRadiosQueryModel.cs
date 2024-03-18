@@ -5,7 +5,7 @@ namespace StreamOr.Core.Models.Radio
 {
     public class AllRadiosQueryModel
     {
-        public int RadiosPerPage { get; } = 10;
+        public int RadiosPerPage { get; } = 5;
 
         public string? Group { get; set; }
 
@@ -17,8 +17,10 @@ namespace StreamOr.Core.Models.Radio
         [Display(Name = "Current Page")]
         public int CurrentPage { get; set; } = 1;
 
+        public int TotalRadiosCount { get; set; }
+
         public ICollection<string> Groups { get; set; } = new List<string>();
 
-        public ICollection<RadioViewModel> Houses { get; set; } = new List<RadioViewModel>();
+        public ICollection<RadioViewModel> Radios { get; set; } = new List<RadioViewModel>();
     }
 }

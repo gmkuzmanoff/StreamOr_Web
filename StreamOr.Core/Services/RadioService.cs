@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using StreamOr.Core.Contracts;
+using StreamOr.Core.Enumerations;
 using StreamOr.Core.Models.Radio;
 using StreamOr.Infrastructure.Data;
 using StreamOr.Infrastructure.Data.Models;
@@ -190,6 +191,74 @@ namespace StreamOr.Core.Services
             }
             
             await context.SaveChangesAsync();
+        }
+
+        public async Task<RadioQueryServiceModel> AllAsync(
+            string? group = null,
+            string? searchTerm = null,
+            RadiosSorting sorting = RadiosSorting.Default,
+            int currentPage = 1,
+            int radiosPerPage = 1,
+            string? userId = null)
+        {
+            var radiosToShow = context.Radios
+                .AsNoTracking()
+                .Where(x => x.OwnerId == userId);
+
+            if (group != null)
+            {
+                radiosToShow = radiosToShow.Where(x => x.Group.Name == group);
+            }
+
+            if (searchTerm != null)
+            {
+                string normalizedSearchTerm = searchTerm.ToLower();
+                radiosToShow = radiosToShow
+                    .Where(
+                    x => x.Title.ToLower().Contains(normalizedSearchTerm) ||
+                    x.Genre.ToLower().Contains(normalizedSearchTerm));
+            }
+
+            radiosToShow = sorting switch
+            {
+                RadiosSorting.Ascending => radiosToShow.OrderBy(x => x.Title),
+                RadiosSorting.Descending => radiosToShow.OrderByDescending(x => x.Title),
+                RadiosSorting.Favorites => radiosToShow.OrderByDescending(x => x.IsFavorite).ThenBy(x => x.Title),
+                RadiosSorting.Default => radiosToShow
+            };
+
+            var radios = await radiosToShow
+                .Skip((currentPage - 1) * radiosPerPage)
+                .Take(radiosPerPage)
+                .Select(x => new RadioViewModel()
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Genre = x.Genre,
+                    Description = x.Description,
+                    OwnerId = userId,
+                    LogoUrl = x.LogoUrl,
+                    IsFavorite = x.IsFavorite.ToString().ToLower()
+                })
+                .ToListAsync();
+
+            int radiosCount = await radiosToShow.CountAsync();
+
+            return new RadioQueryServiceModel()
+            {
+                TotalRadiosCount = radiosCount,
+                Radios = radios
+            };
+
+        }
+
+        public async Task<ICollection<string>> AllGroupsNamesAsync()
+        {
+            return await context.Groups
+                .AsNoTracking()
+                .Select(x => x.Name)
+                .Distinct()
+                .ToListAsync();  
         }
     }
 }

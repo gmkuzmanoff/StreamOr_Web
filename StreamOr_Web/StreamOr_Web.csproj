@@ -30,11 +30,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\Sound.html" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Files\" />
+    <Folder Include="Pages\" />
   </ItemGroup>
 
 </Project>

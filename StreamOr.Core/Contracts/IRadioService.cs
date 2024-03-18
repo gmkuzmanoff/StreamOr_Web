@@ -1,4 +1,5 @@
-﻿using StreamOr.Core.Models.Radio;
+﻿using StreamOr.Core.Enumerations;
+using StreamOr.Core.Models.Radio;
 using StreamOr.Infrastructure.Data.Models;
 
 namespace StreamOr.Core.Contracts
@@ -13,7 +14,14 @@ namespace StreamOr.Core.Contracts
         Task<RadioPlayerViewModel> GetPlayerContentAsync(string userId);
         Task<ICollection<GroupViewModel>> GetGroupsAsync();
         Task EditIsFavoriteAsync(RadioPlayerViewModel model, string userId);
-
+        Task<RadioQueryServiceModel> AllAsync(
+        string? group = null,
+        string? searchTerm = null,
+        RadiosSorting sorting = RadiosSorting.Default,
+        int currentPage = 1,
+        int housesPerPage = 1,
+        string? userId = null);
+        Task<ICollection<string>> AllGroupsNamesAsync();
 
     }
 }

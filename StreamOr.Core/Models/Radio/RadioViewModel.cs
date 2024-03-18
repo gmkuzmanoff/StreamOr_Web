@@ -1,4 +1,6 @@
-﻿namespace StreamOr.Core.Models.Radio
+﻿using StreamOr.Core.Enumerations;
+
+namespace StreamOr.Core.Models.Radio
 {
     public class RadioViewModel
     {

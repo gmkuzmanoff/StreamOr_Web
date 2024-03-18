@@ -10,6 +10,8 @@ namespace StreamOr.Core.Enumerations
         Ascending = 1,
 
         [Display(Name = "Z - A")]
-        Descending = 2
+        Descending = 2,
+
+        Favorites = 3
     }
 }
