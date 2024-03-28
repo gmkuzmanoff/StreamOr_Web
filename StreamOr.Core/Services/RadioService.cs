@@ -66,7 +66,7 @@ namespace StreamOr.Core.Services
         public async Task EditRadioAsync(RadioFormViewModel model, string userId)
         {
             var entity = await context.Radios.FindAsync(HttpUtility.UrlDecode(model.Id));
-			entity.Url = model.Url;
+            entity.Url = model.Url;
             if (string.IsNullOrEmpty(model.Genre))
             {
                 model.Genre = await GetGenre(model.Url);
@@ -94,24 +94,6 @@ namespace StreamOr.Core.Services
             entity.AddedOn = DateTime.Now;
 
             await context.SaveChangesAsync();
-        }
-
-        public async Task<ICollection<RadioViewModel>> GetCollectionAsync(string userId)
-        {
-			return await context.Radios
-				.AsNoTracking()
-				.Where(x => x.OwnerId == userId)
-				.Select(x => new RadioViewModel()
-				{
-                    Id = x.Id,
-					Title = x.Title,
-                    Genre = x.Genre,
-                    Description = x.Description,
-                    OwnerId = userId,
-                    LogoUrl = x.LogoUrl,
-					IsFavorite = x.IsFavorite.ToString().ToLower()
-				})
-				.ToListAsync();
         }
 
         public async Task<ICollection<GroupViewModel>> GetGroupsAsync()
@@ -159,7 +141,7 @@ namespace StreamOr.Core.Services
             return radio;
         }
 
-        public async Task<RadioPlayerViewModel> GetPlayerContentAsync(string? userId)
+        public async Task<RadioPlayerViewModel> GetPlayerContentAsync(string userId)
         {
             return await context.Radios
                 .AsNoTracking()
@@ -259,6 +241,26 @@ namespace StreamOr.Core.Services
                 .Select(x => x.Name)
                 .Distinct()
                 .ToListAsync();  
+        }
+
+        public async Task<string> GetStreamTitle(string url)
+        {
+            string nowPlayingSong = "";
+            nowPlayingSong = await GetNowPlayingTitleFromShoutcastServer(url);
+
+            if (string.IsNullOrEmpty(nowPlayingSong))
+            {
+                string metadata = await GetMetaDataFromIceCastStream(url);
+                try
+                {
+                    nowPlayingSong = metadata.Split('=')[1].Replace("'", "").Replace(";", "");
+                }
+                catch
+                {
+                    nowPlayingSong = "There is no information about current title";
+                }
+            }
+            return nowPlayingSong.Trim().Replace("StreamUrl", "").Replace("&#x0;", "");
         }
     }
 }

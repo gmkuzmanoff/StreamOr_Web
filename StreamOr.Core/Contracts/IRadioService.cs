@@ -10,7 +10,6 @@ namespace StreamOr.Core.Contracts
         Task EditRadioAsync(RadioFormViewModel model, string userId);
         Task<Radio> DeleteEntityAsync(string id);
         Task<Radio> FindTargetAsync(string id);
-        Task<ICollection<RadioViewModel>> GetCollectionAsync(string userId);
         Task<RadioPlayerViewModel> GetPlayerContentAsync(string userId);
         Task<ICollection<GroupViewModel>> GetGroupsAsync();
         Task EditIsFavoriteAsync(RadioPlayerViewModel model, string userId);
@@ -22,6 +21,6 @@ namespace StreamOr.Core.Contracts
         int housesPerPage = 1,
         string? userId = null);
         Task<ICollection<string>> AllGroupsNamesAsync();
-
+        Task<string> GetStreamTitle(string url);
     }
 }

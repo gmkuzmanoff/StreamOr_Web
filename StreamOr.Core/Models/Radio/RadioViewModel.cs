@@ -1,4 +1,6 @@
 ﻿using StreamOr.Core.Enumerations;
+using System.Net;
+
 
 namespace StreamOr.Core.Models.Radio
 {
