@@ -23,9 +23,13 @@ namespace StreamOr_Web.Controllers
         {
             string userId = GetUserId();
             var entity = await radioService.FindTargetAsync(id);
-            if (entity == null || entity.OwnerId != userId)
+            if (entity == null)
             {
                 return BadRequest();
+            }
+            else if (entity.OwnerId != userId)
+            {
+                return Unauthorized();
             }
 
             model.Title = entity.Title;

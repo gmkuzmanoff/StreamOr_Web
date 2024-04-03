@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using StreamOr.Core.Contracts;
 using StreamOr.Core.Models.Radio;
+using System.Security.Claims;
 
 namespace StreamOr_Web.Controllers
 {
@@ -33,8 +34,20 @@ namespace StreamOr_Web.Controllers
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var radio = await radioService.DeleteEntityAsync(id);
-            if(radio == null) { BadRequest(); }
+            if (radio == null)
+            {
+                return BadRequest();
+            }
+            else if (radio.OwnerId != GetUserId())
+            {
+                return Unauthorized();
+            }
             return RedirectToAction(nameof(RadioController.Collection),"Radio");
+        }
+
+        private string GetUserId()
+        {
+            return User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
         }
     }
 }
