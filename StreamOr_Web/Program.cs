@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileProviders;
 using StreamOr.Core.Contracts;
 using StreamOr.Core.Services;
 using StreamOr.Infrastructure.Data;
-using StreamOr_Web.Models;
+using StreamOr_Web.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +21,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = true;
 })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<StreamorDbContext>();
 builder.Services.AddControllersWithViews()
     .AddMvcOptions(options =>
@@ -60,5 +60,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+await app.CreateAdminRoleAsync();
 
 app.Run();

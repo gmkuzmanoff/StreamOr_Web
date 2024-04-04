@@ -203,6 +203,15 @@ namespace StreamOr.Infrastructure.Migrations
                 comment: "Table Radios");
 
             migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "1f579891-5c86-4f06-8834-fe31d1591b01", 0, "7705b1e5-0e51-424e-a2b7-805abc814d5b", "user@gmail.com", false, false, null, "user@gmail.com", "user@gmail.com", "AQAAAAEAACcQAAAAEK8uKhDSFfdNaTh62mvCu2Dt6sWaz6nOhw1VXVD8wXD6F7/AnRl9aWQ4P5B9i5DH2A==", null, false, "a71e6fa1-699c-4761-967e-9b35d5df5d5c", false, "user@gmail.com" },
+                    { "6cdaa3da-3bf5-452c-97d2-8e6d808f4284", 0, "7dcc7086-1be9-4999-af88-23e5146b5c2c", "admin@gmail.com", false, false, null, "admin@gmail.com", "admin@gmail.com", "AQAAAAEAACcQAAAAEGTNdNmR4pm51/9xaOCC9XeEw9gtInNjLwU+1nmUpRQuhVKi/Kz8tWuHUsPh5YQAPg==", null, false, "60982efc-a4df-407d-8661-95e7c2086873", false, "admin@gmail.com" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Groups",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
@@ -218,6 +227,23 @@ namespace StreamOr.Infrastructure.Migrations
                     { 9, "Pop" },
                     { 10, "News & Talk" },
                     { 11, "Religion" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Radios",
+                columns: new[] { "Id", "AddedOn", "Bitrate", "Description", "Genre", "GroupId", "IsFavorite", "LogoUrl", "OwnerId", "Title", "Url" },
+                values: new object[,]
+                {
+                    { "1f579891-5c86-4f06-8834-fe31d1591b01-http://insomniafm.cloudrad.io/;@shoutcast", new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5440), 128, "", "electronic", 3, true, "https://i1.sndcdn.com/avatars-000628757292-l5ks2r-t240x240.jpg", "1f579891-5c86-4f06-8834-fe31d1591b01", "INSOMNIAFM | Electronic Music", "http://insomniafm.cloudrad.io/;@shoutcast" },
+                    { "1f579891-5c86-4f06-8834-fe31d1591b01-http://listen.openstream.co/6524/audio", new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5482), 192, "Unspecified description", "Downtempo, New Age, House, Electronic", 6, false, "", "1f579891-5c86-4f06-8834-fe31d1591b01", "Deep Planet on MixLive.ie", "http://listen.openstream.co/6524/audio" },
+                    { "1f579891-5c86-4f06-8834-fe31d1591b01-http://radiointerface.ru:1250/stream", new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5486), 192, "PROGRESSIVE SPIRIT RADIO DJ @TRANSPIRIT", "CHILLOUT PROGRESSIVE SPIRIT TRANCE PSY AMBIENT", 6, false, "", "1f579891-5c86-4f06-8834-fe31d1591b01", "PROGRESSIVE SPIRIT RADIO", "http://radiointerface.ru:1250/stream" },
+                    { "1f579891-5c86-4f06-8834-fe31d1591b01-http://relay.friskyradio.com/deep_mp3_high", new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5489), 320, "", "Progressive", 3, true, "https://cdn-profiles.tunein.com/s2107/images/logoq.png?t=637685581510000000", "1f579891-5c86-4f06-8834-fe31d1591b01", "Frisky Radio | Deep", "http://relay.friskyradio.com/deep_mp3_high" },
+                    { "1f579891-5c86-4f06-8834-fe31d1591b01-http://stream.overdrivelive.net:8000/alternative_128.mp3", new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5494), 128, "", "Alternative", 1, true, "https://static2.mytuner.mobi/media/tvos_radios/Ue6Sq9DTW5.png", "1f579891-5c86-4f06-8834-fe31d1591b01", "Overdrive Live! Station", "http://stream.overdrivelive.net:8000/alternative_128.mp3" },
+                    { "1f579891-5c86-4f06-8834-fe31d1591b01-http://streams.80s80s.de/hiphop/mp3-192/streams/streema", new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5498), 192, "80s80s HipHop", "80s Retro Hiphop", 2, false, "https://images.80s80s.de/files/2022-05/80s80sHIPHOP_radio_logo.png?rect=0%2C0%2C3840%2C2160&amp;fit=crop&amp;crop=faces&amp;w=400&amp;h=225&amp;dpr=3&amp;fm=webp", "1f579891-5c86-4f06-8834-fe31d1591b01", "80s80s HipHop", "http://streams.80s80s.de/hiphop/mp3-192/streams/streema" },
+                    { "1f579891-5c86-4f06-8834-fe31d1591b01-http://streams.80s80s.de/love/mp3-192/streams/streema", new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5502), 192, "80s80s Love", "80s Retro", 7, false, "https://images.80s80s.de/files/media/image/file/80s80s-hero-love-16-9_1.jpg?rect=center%2Cmiddle%2C1920%2C1080&amp;fit=crop&amp;crop=faces&amp;w=300&amp;h=169&amp;dpr=3&amp;fm=webp", "1f579891-5c86-4f06-8834-fe31d1591b01", "80s80s Love", "http://streams.80s80s.de/love/mp3-192/streams/streema" },
+                    { "1f579891-5c86-4f06-8834-fe31d1591b01-http://streams.80s80s.de/party/mp3-192/streams/streema", new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5506), 192, "80s80s Partyhits", "80s Retro Partyhits", 7, false, "https://images.80s80s.de/files/media/image/file/80s80s_party_16x9.jpg?rect=center%2Cmiddle%2C1920%2C1080&amp;fit=crop&amp;crop=faces&amp;w=400&amp;h=225&amp;dpr=3&amp;fm=webp", "1f579891-5c86-4f06-8834-fe31d1591b01", "80s80s Partyhits", "http://streams.80s80s.de/party/mp3-192/streams/streema" },
+                    { "1f579891-5c86-4f06-8834-fe31d1591b01-http://streams.80s80s.de/rock/mp3-192", new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5509), 192, "80s80s Rock", "80s Retro Rock", 1, false, "https://images.80s80s.de/files/media/image/file/80s80s_rock_16x9.jpg?rect=center%2Cmiddle%2C1920%2C1080&amp;fit=crop&amp;crop=faces&amp;w=736&amp;h=414&amp;dpr=1.25&amp;auto=format", "1f579891-5c86-4f06-8834-fe31d1591b01", "80s80s Rock", "http://streams.80s80s.de/rock/mp3-192" },
+                    { "1f579891-5c86-4f06-8834-fe31d1591b01-http://streams.80s80s.de/wave/mp3-192/streams/streema", new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5513), 192, "80s80s Wave", "80s Retro Wave", 3, false, "https://images.80s80s.de/files/media/image/file/80s80s_wave_16x9.jpg?rect=center%2Cmiddle%2C1920%2C1080&amp;fit=crop&amp;crop=faces&amp;w=400&amp;h=225&amp;dpr=3&amp;fm=webp", "1f579891-5c86-4f06-8834-fe31d1591b01", "80s80s Wave", "http://streams.80s80s.de/wave/mp3-192/streams/streema" }
                 });
 
             migrationBuilder.CreateIndex(

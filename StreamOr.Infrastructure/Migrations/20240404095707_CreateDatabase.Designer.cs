@@ -12,7 +12,7 @@ using StreamOr.Infrastructure.Data;
 namespace StreamOr.Infrastructure.Migrations
 {
     [DbContext(typeof(StreamorDbContext))]
-    [Migration("20240301151159_CreateDatabase")]
+    [Migration("20240404095707_CreateDatabase")]
     partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -139,6 +139,40 @@ namespace StreamOr.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "6cdaa3da-3bf5-452c-97d2-8e6d808f4284",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7dcc7086-1be9-4999-af88-23e5146b5c2c",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "admin@gmail.com",
+                            NormalizedUserName = "admin@gmail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGTNdNmR4pm51/9xaOCC9XeEw9gtInNjLwU+1nmUpRQuhVKi/Kz8tWuHUsPh5YQAPg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "60982efc-a4df-407d-8661-95e7c2086873",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "1f579891-5c86-4f06-8834-fe31d1591b01",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7705b1e5-0e51-424e-a2b7-805abc814d5b",
+                            Email = "user@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "user@gmail.com",
+                            NormalizedUserName = "user@gmail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK8uKhDSFfdNaTh62mvCu2Dt6sWaz6nOhw1VXVD8wXD6F7/AnRl9aWQ4P5B9i5DH2A==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "a71e6fa1-699c-4761-967e-9b35d5df5d5c",
+                            TwoFactorEnabled = false,
+                            UserName = "user@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -366,6 +400,148 @@ namespace StreamOr.Infrastructure.Migrations
                     b.ToTable("Radios");
 
                     b.HasComment("Table Radios");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1f579891-5c86-4f06-8834-fe31d1591b01-http://insomniafm.cloudrad.io/;@shoutcast",
+                            AddedOn = new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5440),
+                            Bitrate = 128,
+                            Description = "",
+                            Genre = "electronic",
+                            GroupId = 3,
+                            IsFavorite = true,
+                            LogoUrl = "https://i1.sndcdn.com/avatars-000628757292-l5ks2r-t240x240.jpg",
+                            OwnerId = "1f579891-5c86-4f06-8834-fe31d1591b01",
+                            Title = "INSOMNIAFM | Electronic Music",
+                            Url = "http://insomniafm.cloudrad.io/;@shoutcast"
+                        },
+                        new
+                        {
+                            Id = "1f579891-5c86-4f06-8834-fe31d1591b01-http://listen.openstream.co/6524/audio",
+                            AddedOn = new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5482),
+                            Bitrate = 192,
+                            Description = "Unspecified description",
+                            Genre = "Downtempo, New Age, House, Electronic",
+                            GroupId = 6,
+                            IsFavorite = false,
+                            LogoUrl = "",
+                            OwnerId = "1f579891-5c86-4f06-8834-fe31d1591b01",
+                            Title = "Deep Planet on MixLive.ie",
+                            Url = "http://listen.openstream.co/6524/audio"
+                        },
+                        new
+                        {
+                            Id = "1f579891-5c86-4f06-8834-fe31d1591b01-http://radiointerface.ru:1250/stream",
+                            AddedOn = new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5486),
+                            Bitrate = 192,
+                            Description = "PROGRESSIVE SPIRIT RADIO DJ @TRANSPIRIT",
+                            Genre = "CHILLOUT PROGRESSIVE SPIRIT TRANCE PSY AMBIENT",
+                            GroupId = 6,
+                            IsFavorite = false,
+                            LogoUrl = "",
+                            OwnerId = "1f579891-5c86-4f06-8834-fe31d1591b01",
+                            Title = "PROGRESSIVE SPIRIT RADIO",
+                            Url = "http://radiointerface.ru:1250/stream"
+                        },
+                        new
+                        {
+                            Id = "1f579891-5c86-4f06-8834-fe31d1591b01-http://relay.friskyradio.com/deep_mp3_high",
+                            AddedOn = new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5489),
+                            Bitrate = 320,
+                            Description = "",
+                            Genre = "Progressive",
+                            GroupId = 3,
+                            IsFavorite = true,
+                            LogoUrl = "https://cdn-profiles.tunein.com/s2107/images/logoq.png?t=637685581510000000",
+                            OwnerId = "1f579891-5c86-4f06-8834-fe31d1591b01",
+                            Title = "Frisky Radio | Deep",
+                            Url = "http://relay.friskyradio.com/deep_mp3_high"
+                        },
+                        new
+                        {
+                            Id = "1f579891-5c86-4f06-8834-fe31d1591b01-http://stream.overdrivelive.net:8000/alternative_128.mp3",
+                            AddedOn = new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5494),
+                            Bitrate = 128,
+                            Description = "",
+                            Genre = "Alternative",
+                            GroupId = 1,
+                            IsFavorite = true,
+                            LogoUrl = "https://static2.mytuner.mobi/media/tvos_radios/Ue6Sq9DTW5.png",
+                            OwnerId = "1f579891-5c86-4f06-8834-fe31d1591b01",
+                            Title = "Overdrive Live! Station",
+                            Url = "http://stream.overdrivelive.net:8000/alternative_128.mp3"
+                        },
+                        new
+                        {
+                            Id = "1f579891-5c86-4f06-8834-fe31d1591b01-http://streams.80s80s.de/rock/mp3-192",
+                            AddedOn = new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5509),
+                            Bitrate = 192,
+                            Description = "80s80s Rock",
+                            Genre = "80s Retro Rock",
+                            GroupId = 1,
+                            IsFavorite = false,
+                            LogoUrl = "https://images.80s80s.de/files/media/image/file/80s80s_rock_16x9.jpg?rect=center%2Cmiddle%2C1920%2C1080&amp;fit=crop&amp;crop=faces&amp;w=736&amp;h=414&amp;dpr=1.25&amp;auto=format",
+                            OwnerId = "1f579891-5c86-4f06-8834-fe31d1591b01",
+                            Title = "80s80s Rock",
+                            Url = "http://streams.80s80s.de/rock/mp3-192"
+                        },
+                        new
+                        {
+                            Id = "1f579891-5c86-4f06-8834-fe31d1591b01-http://streams.80s80s.de/wave/mp3-192/streams/streema",
+                            AddedOn = new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5513),
+                            Bitrate = 192,
+                            Description = "80s80s Wave",
+                            Genre = "80s Retro Wave",
+                            GroupId = 3,
+                            IsFavorite = false,
+                            LogoUrl = "https://images.80s80s.de/files/media/image/file/80s80s_wave_16x9.jpg?rect=center%2Cmiddle%2C1920%2C1080&amp;fit=crop&amp;crop=faces&amp;w=400&amp;h=225&amp;dpr=3&amp;fm=webp",
+                            OwnerId = "1f579891-5c86-4f06-8834-fe31d1591b01",
+                            Title = "80s80s Wave",
+                            Url = "http://streams.80s80s.de/wave/mp3-192/streams/streema"
+                        },
+                        new
+                        {
+                            Id = "1f579891-5c86-4f06-8834-fe31d1591b01-http://streams.80s80s.de/hiphop/mp3-192/streams/streema",
+                            AddedOn = new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5498),
+                            Bitrate = 192,
+                            Description = "80s80s HipHop",
+                            Genre = "80s Retro Hiphop",
+                            GroupId = 2,
+                            IsFavorite = false,
+                            LogoUrl = "https://images.80s80s.de/files/2022-05/80s80sHIPHOP_radio_logo.png?rect=0%2C0%2C3840%2C2160&amp;fit=crop&amp;crop=faces&amp;w=400&amp;h=225&amp;dpr=3&amp;fm=webp",
+                            OwnerId = "1f579891-5c86-4f06-8834-fe31d1591b01",
+                            Title = "80s80s HipHop",
+                            Url = "http://streams.80s80s.de/hiphop/mp3-192/streams/streema"
+                        },
+                        new
+                        {
+                            Id = "1f579891-5c86-4f06-8834-fe31d1591b01-http://streams.80s80s.de/love/mp3-192/streams/streema",
+                            AddedOn = new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5502),
+                            Bitrate = 192,
+                            Description = "80s80s Love",
+                            Genre = "80s Retro",
+                            GroupId = 7,
+                            IsFavorite = false,
+                            LogoUrl = "https://images.80s80s.de/files/media/image/file/80s80s-hero-love-16-9_1.jpg?rect=center%2Cmiddle%2C1920%2C1080&amp;fit=crop&amp;crop=faces&amp;w=300&amp;h=169&amp;dpr=3&amp;fm=webp",
+                            OwnerId = "1f579891-5c86-4f06-8834-fe31d1591b01",
+                            Title = "80s80s Love",
+                            Url = "http://streams.80s80s.de/love/mp3-192/streams/streema"
+                        },
+                        new
+                        {
+                            Id = "1f579891-5c86-4f06-8834-fe31d1591b01-http://streams.80s80s.de/party/mp3-192/streams/streema",
+                            AddedOn = new DateTime(2024, 4, 4, 12, 57, 7, 388, DateTimeKind.Local).AddTicks(5506),
+                            Bitrate = 192,
+                            Description = "80s80s Partyhits",
+                            Genre = "80s Retro Partyhits",
+                            GroupId = 7,
+                            IsFavorite = false,
+                            LogoUrl = "https://images.80s80s.de/files/media/image/file/80s80s_party_16x9.jpg?rect=center%2Cmiddle%2C1920%2C1080&amp;fit=crop&amp;crop=faces&amp;w=400&amp;h=225&amp;dpr=3&amp;fm=webp",
+                            OwnerId = "1f579891-5c86-4f06-8834-fe31d1591b01",
+                            Title = "80s80s Partyhits",
+                            Url = "http://streams.80s80s.de/party/mp3-192/streams/streema"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -65,10 +65,6 @@ namespace StreamOr_Web.Controllers
         {
             string userId = GetUserId();
             var entity = await radioService.FindTargetAsync(id);
-            if (entity == null || entity.OwnerId != userId)
-            {
-                //return BadRequest();
-            }
             var model = new RadioPlayerViewModel()
             {
                 Id = entity.Id,
@@ -82,13 +78,21 @@ namespace StreamOr_Web.Controllers
                 IsFavorite = entity.IsFavorite.ToString().ToLower(),
                 Bitrate = entity.Bitrate.ToString()
             };
-            //Create local user directory
-            string localUserDir = $"{Environment.CurrentDirectory}\\files\\{userId}";
-            //Create local user html 
-            string localUserFile = $"{localUserDir}\\{userId}.m3u";
-            StreamWriter writer = new StreamWriter(localUserFile);
-            writer.WriteLine(CreateM3uPlaylist(model.Url, model.Title, model.Group, model.LogoUrl));
-            writer.Close();
+
+            string localUserDir = string.Empty;
+            string localUserFile = string.Empty;
+
+            if (entity != null && entity.OwnerId == userId)
+            {
+                //Create local user directory
+                localUserDir = $"{Environment.CurrentDirectory}\\files\\{userId}";
+                //Create local user html 
+                localUserFile = $"{localUserDir}\\{userId}.m3u";
+                StreamWriter writer = new StreamWriter(localUserFile);
+                writer.WriteLine(CreateM3uPlaylist(model.Url, model.Title, model.Group, model.LogoUrl));
+                writer.Close(); 
+            }
+
             return PhysicalFile(localUserFile, "application/m3u", $"{model.Title}.m3u");
         }
 
