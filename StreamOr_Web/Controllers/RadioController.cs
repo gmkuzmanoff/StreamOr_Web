@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using StreamOr.Core.Contracts;
 using StreamOr.Core.Models.Radio;
 using System.Security.Claims;
+using static StreamOr.Infrastructure.Constants.RoleConstants;
 
 namespace StreamOr_Web.Controllers
 {
@@ -20,7 +21,11 @@ namespace StreamOr_Web.Controllers
 		
 		[HttpGet]
 		public async Task<IActionResult> Collection([FromQuery]AllRadiosQueryModel query)
-		{ 
+		{
+            if (User.IsInRole(AdminRole))
+            {
+                return RedirectToAction("Wall","Admin");
+            }
 			string userId = GetUserId();
             var model = await radioService.AllAsync(
                 query.Group,

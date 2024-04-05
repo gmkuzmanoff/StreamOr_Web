@@ -4,7 +4,6 @@ using StreamOr.Core.Contracts;
 using StreamOr.Core.Models.Radio;
 using System.Security.Claims;
 using System.Text;
-using static StreamOr.Infrastructure.Constants.RadioMetadata;
 
 namespace StreamOr_Web.Controllers
 {
@@ -86,7 +85,7 @@ namespace StreamOr_Web.Controllers
             {
                 //Create local user directory
                 localUserDir = $"{Environment.CurrentDirectory}\\files\\{userId}";
-                //Create local user html 
+                //Create local user m3u file
                 localUserFile = $"{localUserDir}\\{userId}.m3u";
                 StreamWriter writer = new StreamWriter(localUserFile);
                 writer.WriteLine(CreateM3uPlaylist(model.Url, model.Title, model.Group, model.LogoUrl));

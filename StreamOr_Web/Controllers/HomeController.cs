@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.FileProviders;
-using StreamOr_Web.Models;
-using System.Diagnostics;
+using static StreamOr.Infrastructure.Constants.RoleConstants;
 
 namespace StreamOr_Web.Controllers
 {
@@ -16,9 +14,13 @@ namespace StreamOr_Web.Controllers
 
         public IActionResult Index()
         {
-            if (User?.Identity != null && User.Identity.IsAuthenticated)
+            if (User?.Identity != null && User.Identity.IsAuthenticated && !User.IsInRole(AdminRole))
             {
                 return RedirectToAction("Collection", "Radio");
+            }
+            else if(User?.Identity != null && User.Identity.IsAuthenticated && User.IsInRole(AdminRole))
+            {
+                return RedirectToAction("Wall", "Admin");
             }
             return View();
         }

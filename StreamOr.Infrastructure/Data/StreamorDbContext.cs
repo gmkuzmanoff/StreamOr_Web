@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using StreamOr.Infrastructure.Data.Models;
-using System.Reflection.Emit;
 
 namespace StreamOr.Infrastructure.Data
 {
@@ -208,7 +207,7 @@ namespace StreamOr.Infrastructure.Data
                 Genre = "80s Retro Wave",
                 Bitrate = 192,
                 OwnerId = "1f579891-5c86-4f06-8834-fe31d1591b01",
-                GroupId = 3
+                GroupId = 7
             };
             radios.Add(insomniaFm);
             radios.Add(deepPlanet);

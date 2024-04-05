@@ -134,9 +134,16 @@ namespace StreamOr.Infrastructure.Constants
             HttpClient m_httpClient = new HttpClient();
             HttpResponseMessage response = null;
             m_httpClient.DefaultRequestHeaders.Add("Icy-MetaData", "1");
-            try
-            {
-                response = await m_httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead);
+			try
+			{
+				response = await m_httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead);
+			}
+			catch
+			{
+				return result;
+			}
+			if (response != null)
+			{
                 m_httpClient.DefaultRequestHeaders.Remove("Icy-MetaData");
                 if (response.IsSuccessStatusCode)
                 {
@@ -144,38 +151,33 @@ namespace StreamOr.Infrastructure.Constants
                     if (response.Headers.TryGetValues("icy-metaint", out headerValues))
                     {
                         string metaIntString = headerValues.First();
-
+						StreamWriter writer = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/ResponseMessage.txt");
+						writer.Write(metaIntString);
+						writer.Dispose();
                         if (!string.IsNullOrEmpty(metaIntString))
                         {
-                            int metadataInterval = Convert.ToInt16(metaIntString);
+                            int metadataInterval = int.Parse(metaIntString);
                             byte[] buffer = new byte[metadataInterval];
+							Stream stream = await response.Content.ReadAsStreamAsync();
+							int numBytesToRead = metadataInterval;
+							int n = 0;
+							while (n < numBytesToRead)
+							{
+								n++;
+								stream.ReadByte();
+							}
 
-                            Stream stream = await response.Content.ReadAsStreamAsync();
-
-                            int numBytesRead = 0;
-                            int numBytesToRead = metadataInterval;
-                            do
-                            {
-                                int n = await stream.ReadAsync(buffer, numBytesRead, 10);
-                                numBytesRead += n;
-                                numBytesToRead -= n;
-                            } while (numBytesToRead > 0);
-
-                            int lengthOfMetaData = stream.ReadByte();
-                            int metaBytesToRead = lengthOfMetaData * 16;
-                            byte[] metadataBytes = new byte[metaBytesToRead];
-                            var bytesRead = await stream.ReadAsync(metadataBytes, 0, metaBytesToRead);
-                            result = System.Text.Encoding.UTF8.GetString(metadataBytes);
-                            stream.Dispose();
-                        }
-
+							int lengthOfMetaData = stream.ReadByte();
+							int metaBytesToRead = lengthOfMetaData * 16;
+							byte[] metadataBytes = new byte[metaBytesToRead];
+							var bytesRead = await stream.ReadAsync(metadataBytes, 0, metaBytesToRead);
+							result = System.Text.Encoding.UTF8.GetString(metadataBytes);
+							stream.Dispose();
+						}
                     }
                 }
             }
-            catch
-            {
-
-            }
+                
             m_httpClient.Dispose();
             return result;
         }
@@ -197,10 +199,6 @@ namespace StreamOr.Infrastructure.Constants
             catch
             {
 
-            }
-            if (result.Contains('�'))
-            {
-                result = "Unknown title";
             }
             return result;
         }

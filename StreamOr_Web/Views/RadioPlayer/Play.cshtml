@@ -1,7 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Html
 @using StreamOr.Core.Contracts
 @model RadioPlayerViewModel
-@using static StreamOr.Infrastructure.Constants.RadioMetadata
 @inject IRadioService radioService
 @{
     ViewBag.Title = "Radio Player";
@@ -43,7 +42,7 @@
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between">
-                        <h5 id="streamT">@await radioService.GetStreamTitle(Model.Url)</h5>
+                        <label id="streamT" class="text-black fs-4">@await radioService.GetStreamTitle(Model.Url)</label>
                     </div>
                     <div class="card-footer d-flex justify-content-between">
                         <audio class="w-100" src="@Model.Url" controls autoplay></audio>

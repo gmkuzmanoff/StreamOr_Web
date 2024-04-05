@@ -260,7 +260,7 @@ namespace StreamOr.Core.Services
                     nowPlayingSong = "There is no information about current title";
                 }
             }
-            return nowPlayingSong.Trim().Replace("StreamUrl", "").Replace("&#x0;", "");
+            return nowPlayingSong.Trim().Replace("StreamUrl", "");
         }
     }
 }

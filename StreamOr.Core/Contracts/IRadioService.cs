@@ -18,7 +18,7 @@ namespace StreamOr.Core.Contracts
         string? searchTerm = null,
         RadiosSorting sorting = RadiosSorting.Default,
         int currentPage = 1,
-        int housesPerPage = 1,
+        int radiosPerPage = 1,
         string? userId = null);
         Task<ICollection<string>> AllGroupsNamesAsync();
         Task<string> GetStreamTitle(string url);

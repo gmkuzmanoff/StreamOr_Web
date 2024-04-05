@@ -12,6 +12,7 @@ namespace StreamOr.Core.Models.Radio
         [Display(Name = "Search Term")]
         public string? SearchTerm { get; set; }
 
+        [Display(Name = "Sorting by")]
         public RadiosSorting Sorting { get; set; }
 
         [Display(Name = "Current Page")]
