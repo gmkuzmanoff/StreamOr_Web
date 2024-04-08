@@ -30,6 +30,7 @@ builder.Services.AddControllersWithViews()
     });
 // Add services to the container.
 builder.Services.AddScoped<IRadioService, RadioService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 
 var app = builder.Build();
 

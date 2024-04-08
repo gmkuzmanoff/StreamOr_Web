@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using StreamOr.Core.Contracts;
 using StreamOr.Core.Models.Radio;
 using System.Security.Claims;
+using static StreamOr.Infrastructure.Constants.RoleConstants;
 
 namespace StreamOr_Web.Controllers
 {
@@ -22,10 +23,15 @@ namespace StreamOr_Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(RadioDeleteViewModel model, string id)
         {
+            string userId = GetUserId();
             var entity = await radioService.FindTargetAsync(id);
             if (entity == null)
             {
                 return BadRequest();
+            }
+            if (entity.OwnerId != userId && !User.IsInRole(AdminRole))
+            {
+                return Unauthorized();
             }
             model.Title = entity.Title;
             return View(model);
@@ -33,15 +39,13 @@ namespace StreamOr_Web.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var radio = await radioService.DeleteEntityAsync(id);
-            if (radio == null)
-            {
-                return BadRequest();
-            }
-            else if (radio.OwnerId != GetUserId())
+            string userId = GetUserId();
+            var target = await radioService.FindTargetAsync(id);
+            if (target.OwnerId != userId && !User.IsInRole(AdminRole))
             {
                 return Unauthorized();
             }
+            var radio = await radioService.DeleteEntityAsync(id);
             return RedirectToAction(nameof(RadioController.Collection),"Radio");
         }
 

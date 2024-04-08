@@ -1,0 +1,20 @@
+﻿<div class="row row-cols-1 row-cols-sm-5 g-4 rounded-2 bg-secondary">
+    @if (Model.Radios.Count > 0)
+    {
+        foreach (var radio in Model.Radios)
+        {
+            <div class="col w-100">
+                <div class="card h-100 w-100">
+                    <div class=" d-flex justify-content-between gap-3">
+                        <h5 class="card-title m-3">@radio.Title</h5>
+                        <div class="d-flex">
+                            <a asp-controller="DetailsRadio" asp-action="Details" asp-route-id="@radio.Id" class="btn fs-3" style="font-size:0.8em;" title="Details">📄</a>
+                            <a asp-controller="DeleteRadio" asp-action="Delete" asp-route-id="@radio.Id" class="btn fs-3" title="Delete">❌</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        }
+    }
+</div>

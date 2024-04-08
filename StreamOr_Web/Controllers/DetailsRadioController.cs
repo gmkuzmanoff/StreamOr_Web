@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using StreamOr.Core.Contracts;
 using StreamOr.Core.Models.Radio;
 using System.Security.Claims;
+using static StreamOr.Infrastructure.Constants.RoleConstants;
 
 namespace StreamOr_Web.Controllers
 {
@@ -27,7 +28,7 @@ namespace StreamOr_Web.Controllers
             {
                 return BadRequest();
             }
-            else if (entity.OwnerId != userId)
+            else if (entity.OwnerId != userId && !User.IsInRole(AdminRole))
             {
                 return Unauthorized();
             }
