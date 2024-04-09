@@ -102,11 +102,14 @@ namespace StreamOr_Web.Controllers
 
             var entity = await radioService.FindTargetAsync(model.Id);
 
-            if (entity == null || entity.OwnerId != userId)
+            if (entity == null)
             {
                return BadRequest();
             }
-
+            else if (entity.OwnerId != userId)
+            {
+                return Unauthorized();
+            }
             await radioService.EditIsFavoriteAsync(model, userId);
             return RedirectToAction(nameof(Play), new {id=model.Id});
         }

@@ -21,7 +21,7 @@ namespace StreamOr_Web.Controllers
             }
             else if(User?.Identity != null && User.Identity.IsAuthenticated && User.IsInRole(AdminRole))
             {
-                return RedirectToAction("Wall", "Admin");
+                return RedirectToAction("Wall", "Admin", new {Area="Admin"});
             }
             return View();
         }

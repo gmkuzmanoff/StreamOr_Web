@@ -5,19 +5,10 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-StreamOr_Web-a24e466f-8ca2-4b7a-a5ff-edbb7ec74b87</UserSecretsId>
+    <ApplicationIcon>wwwroot\favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Files\Images\P1.jpg" />
-    <Content Include="Files\Images\P2.jpg" />
-    <Content Include="Files\Images\P3.jpg" />
-    <Content Include="Files\Images\P4.jpg" />
-    <Content Include="Files\Images\P5.jpg" />
-    <Content Include="Files\Images\P6.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.WebHelpers" Version="3.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.25" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.27" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.27" />
@@ -39,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Pages\" />
   </ItemGroup>
 

@@ -1,0 +1,25 @@
+﻿@model RadioDetailsViewModel
+@{
+}
+
+<div id="delete-dialog" class="">
+    <div class="modal-dialog">
+        <div class="modal-content bg-black">
+            <div class="modal-header">
+                <h1 class="fs-3">Details</h1>
+            </div>
+            <div class="delete-info m-3">
+                <h5 class="fs-6 text-white-50 fw-light"><span class="text-warning fs-6">Title:</span>   @Model.Title</h5>
+                <h5 class="fs-6 text-white-50 fw-light"><span class="text-warning fs-6">Genre:</span>   @Model.Genre</h5>
+                <h5 class="fs-6 text-white-50 fw-light"><span class="text-warning fs-6">Added:</span>   @Model.AddedOn</h5>
+                <h5 class="fs-6 text-white-50 fw-light"><span class="text-warning fs-6">Group:</span>   @Model.Group</h5>
+                <h5 class="fs-6 text-white-50 fw-light"><span class="text-warning fs-6">Description:</span>   @Model.Description</h5>
+                <h5 class="fs-6 text-white-50 fw-light"><span class="text-warning fs-6">Is Favorite:</span>   @Model.IsFavorite</h5>
+                <h5 class="fs-6 text-white-50 fw-light"><span class="text-warning fs-6">Bitrate:</span>   @Model.Bitrate Kbps</h5>
+            </div>
+            <div class="modal-footer">
+                <a asp-area="Admin" asp-controller="Admin" asp-action="Wall" type="button" class="btn btn-secondary">Back</a>
+            </div>
+        </div>
+    </div>
+</div>

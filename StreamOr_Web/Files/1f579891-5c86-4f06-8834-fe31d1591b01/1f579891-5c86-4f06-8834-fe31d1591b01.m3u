@@ -1,4 +1,4 @@
 #EXTM3U
-#EXTINF:-1 group-title="Electronic" tvg-logo="https://i1.sndcdn.com/avatars-000628757292-l5ks2r-t240x240.jpg", INSOMNIAFM | Electronic Music
-http://insomniafm.cloudrad.io/;@shoutcast
+#EXTINF:-1 group-title="Ambient & Chillout" tvg-logo="https://gmkuzmanoff.free.bg/images/STREAMOR/P4.jpg", PROGRESSIVE SPIRIT RADIO
+http://radiointerface.ru:1250/stream
 

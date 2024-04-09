@@ -3,6 +3,8 @@ using Microsoft.Extensions.Logging;
 using StreamOr.Core.Contracts;
 using StreamOr.Core.Models.Radio;
 using StreamOr.Infrastructure.Data;
+using StreamOr.Infrastructure.Data.Models;
+using System.Web;
 
 namespace StreamOr.Core.Services
 {
@@ -17,6 +19,28 @@ namespace StreamOr.Core.Services
         {
             this.context = context;
             this.logger = logger;
+        }
+
+        public async Task<Radio> FindTargetAsync(string id)
+        {
+            return await context.Radios
+                .AsNoTracking()
+                .Select(x => new Radio()
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Url = x.Url,
+                    Genre = x.Genre,
+                    OwnerId = x.OwnerId,
+                    Owner = x.Owner,
+                    Description = x.Description,
+                    IsFavorite = x.IsFavorite,
+                    AddedOn = x.AddedOn,
+                    LogoUrl = x.LogoUrl,
+                    Group = x.Group,
+                    Bitrate = x.Bitrate
+                })
+                .FirstOrDefaultAsync(x => x.Id == HttpUtility.UrlDecode(id));
         }
 
         public async Task<AdminQueryServiceModel> AllAsync(
@@ -59,6 +83,17 @@ namespace StreamOr.Core.Services
                 .Select(x => x.UserName)
                 .Distinct()
                 .ToListAsync();
+        }
+
+        public async Task<Radio> DeleteEntityAsync(string id)
+        {
+            var radio = await context.Radios.FindAsync(HttpUtility.UrlDecode(id));
+            if (radio != null)
+            {
+                context.Radios.Remove(radio);
+                await context.SaveChangesAsync();
+            }
+            return radio;
         }
     }
 }

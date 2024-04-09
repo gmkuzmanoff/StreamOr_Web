@@ -1,0 +1,24 @@
+﻿@model AdminDeleteRadioModel
+@{
+}
+
+<div id="delete-dialog" class="">
+    <div class="modal-dialog">
+        <div class="modal-content bg-black">
+            <div class="modal-header">
+                <h1 class="fs-3">Confirmation</h1>
+            </div>
+            <div class="delete-info m-3">
+                <p class="text-danger mt-3 fs-4">Are you sure you want to delete permanently <span class="text-primary">@Model.Title</span> from the collection of this user (<span class="text-warning">@Model.Owner</span>) ?</p>
+            </div>
+            <div class="modal-footer">
+                <a asp-area="Admin" asp-controller="Admin" asp-action="Wall" type="button" class="btn btn-secondary">Cancel</a>
+                <form asp-action="DeleteConfirmed" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
