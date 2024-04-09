@@ -21,11 +21,11 @@
                             <form asp-action="EditIsFavorite" method="post">
                                 @if (Model.IsFavorite == "false")
                                 {
-                                    <input asp-controller="RadioPlayer" asp-action="EditIsFavorite" asp-route-id="@Model.Id" type="submit" title="Add @Model.Title to your favorite radio stations" class="btn btn-dark" value="🤍" />
+                                    <input id="addToFav" asp-controller="RadioPlayer" asp-action="EditIsFavorite" asp-route-id="@Model.Id" type="submit" title="Add @Model.Title to your favorite radio stations" class="btn btn-dark" value="🤍" onclick="AddToFavorite()" />
                                 }
                                 else
                                 {
-                                    <input asp-controller="RadioPlayer" asp-action="EditIsFavorite" asp-route-id="@Model.Id" type="submit" title="Remove @Model.Title from your favorite radio stations" class="btn btn-dark" value="💚" />
+                                    <input id="removeFromFav" asp-controller="RadioPlayer" asp-action="EditIsFavorite" asp-route-id="@Model.Id" type="submit" title="Remove @Model.Title from your favorite radio stations" class="btn btn-dark" value="💚" onclick="RemoveFromFavorite()" />
                                 }
                             </form>
                             <a asp-controller="RadioPlayer" asp-action="PlayInNewTab" asp-route-url="@Model.Url" class="btn text-warning btn-dark">Play in new tab</a>
@@ -54,5 +54,18 @@
 </div>
 
 
+@section Scripts{
+    <link href="~/lib/toastr/toastr.min.css" rel="stylesheet" />
+    <script src="~/lib/toastr/toastr.min.js"></script>
+    
+    <script>
+        function AddToFavorite(){
+            toastr.success('This radio is now favorite!');
+        }
+        function RemoveFromFavorite() {
+            toastr.error('This radio is removed from favorites!');
+        }
+    </script>
+}
 
 
