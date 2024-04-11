@@ -67,34 +67,38 @@ namespace StreamOr.Core.Services
         public async Task EditRadioAsync(RadioFormViewModel model, string userId)
         {
             var entity = await context.Radios.FindAsync(HttpUtility.UrlDecode(model.Id));
-            entity.Url = model.Url;
-            if (string.IsNullOrEmpty(model.Genre))
+            if (entity != null)
             {
-                model.Genre = await GetGenre(model.Url);
-            }
-            entity.Genre = model.Genre;
-            if (string.IsNullOrEmpty(model.Title))
-            {
-                model.Title = await GetTitle(model.Url);
-            }
-            entity.Title = model.Title;
-            string br = await GetBitrate(model.Url);
-            if (string.IsNullOrEmpty(br))
-            {
-                br = "128";
-            }
-            entity.Bitrate = int.Parse(br);
-            entity.Description = await GetDescription(model.Url);
-            entity.IsFavorite = false;
-            if (string.IsNullOrEmpty(model.LogoUrl))
-            {
-                model.LogoUrl = string.Empty;
-            }
-            entity.LogoUrl = model.LogoUrl;
-            entity.GroupId = model.Group;
-            entity.AddedOn = DateTime.Now;
+                entity.Url = model.Url;
+                if (string.IsNullOrEmpty(model.Genre))
+                {
+                    model.Genre = await GetGenre(model.Url);
+                }
+                entity.Genre = model.Genre;
+                if (string.IsNullOrEmpty(model.Title))
+                {
+                    model.Title = await GetTitle(model.Url);
+                }
+                entity.Title = model.Title;
+                string br = await GetBitrate(model.Url);
+                if (string.IsNullOrEmpty(br))
+                {
+                    br = "128";
+                }
+                entity.Bitrate = int.Parse(br);
+                entity.Description = await GetDescription(model.Url);
+                entity.IsFavorite = false;
+                if (string.IsNullOrEmpty(model.LogoUrl))
+                {
+                    model.LogoUrl = string.Empty;
+                }
+                entity.LogoUrl = model.LogoUrl;
+                entity.GroupId = model.Group;
+                entity.AddedOn = DateTime.Now;
 
-            await context.SaveChangesAsync();
+                await context.SaveChangesAsync();
+            }
+            
         }
 
         public async Task<ICollection<GroupViewModel>> GetGroupsAsync()
@@ -109,7 +113,7 @@ namespace StreamOr.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<Radio> FindTargetAsync(string id)
+        public async Task<Radio?> FindTargetAsync(string id)
         {
             return await context.Radios
                 .AsNoTracking()
@@ -119,7 +123,7 @@ namespace StreamOr.Core.Services
                     Title = x.Title,
                     Url = x.Url,
                     Genre = x.Genre,
-                    OwnerId=x.OwnerId,
+                    OwnerId = x.OwnerId,
                     Owner = x.Owner,
                     Description = x.Description,
                     IsFavorite = x.IsFavorite,
@@ -128,7 +132,8 @@ namespace StreamOr.Core.Services
                     Group = x.Group,
                     Bitrate = x.Bitrate
                 })
-                .FirstOrDefaultAsync(x => x.Id == HttpUtility.UrlDecode(id));
+                .Where(x => x.Id == HttpUtility.UrlDecode(id))
+                .FirstOrDefaultAsync();
         }
 
         public async Task<Radio> DeleteEntityAsync(string id)
@@ -140,25 +145,6 @@ namespace StreamOr.Core.Services
 				await context.SaveChangesAsync();
 			}
             return radio;
-        }
-
-        public async Task<RadioPlayerViewModel> GetPlayerContentAsync(string userId)
-        {
-            return await context.Radios
-                .AsNoTracking()
-                .Where(x => x.OwnerId == userId)
-                .Select(x => new RadioPlayerViewModel()
-                {
-                    Id= x.Id,
-                    Title = x.Title,
-                    Url = x.Url,
-                    Genre = x.Genre,
-                    Description = x.Description,
-                    LogoUrl= x.LogoUrl,
-                    IsFavorite = x.IsFavorite.ToString().ToLower(),
-                    Bitrate = x.Bitrate.ToString()
-                })
-                .FirstOrDefaultAsync();
         }
 
         public async Task EditIsFavoriteAsync(RadioPlayerViewModel model, string userId)

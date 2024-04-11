@@ -24,7 +24,7 @@ namespace StreamOr.Core.Models.Radio
 
         public bool IsFavorite { get; set; }
 
-        public string? Bitrate { get; set; }
+        public string Bitrate { get; set; } = string.Empty;
 
         [Required(ErrorMessage = RequireErrorMessage)]
         public int Group { get; set; }

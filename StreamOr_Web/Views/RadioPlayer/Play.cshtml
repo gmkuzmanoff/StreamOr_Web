@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Html
 @using StreamOr.Core.Contracts
+@using System.Timers
 @model RadioPlayerViewModel
 @inject IRadioService radioService
 @{
@@ -16,7 +17,7 @@
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4 bg-black">
-                        <img src="@Model.LogoUrl" class="img-fluid rounded-start" alt="..." style="min-width:250px;">
+                        <img src="@Model.LogoUrl" class="img-fluid" alt="..." style="min-width:250px;">
                         <div class="card-footer bg-white d-flex justify-content-between align-items-start gap-3">
                             <form asp-action="EditIsFavorite" method="post">
                                 @if (Model.IsFavorite == "false")
@@ -59,12 +60,14 @@
     <script src="~/lib/toastr/toastr.min.js"></script>
     
     <script>
+        toastr.options.positionClass = "toast-top-center";
         function AddToFavorite(){
-            toastr.success('This radio is now favorite!');
+            toastr.success('@Model.Title is now favorite!');
         }
         function RemoveFromFavorite() {
-            toastr.error('This radio is removed from favorites!');
+            toastr.error('@Model.Title is removed from favorites!');
         }
+
     </script>
 }
 

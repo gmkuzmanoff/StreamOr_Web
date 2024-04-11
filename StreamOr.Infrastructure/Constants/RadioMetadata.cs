@@ -151,9 +151,6 @@ namespace StreamOr.Infrastructure.Constants
                     if (response.Headers.TryGetValues("icy-metaint", out headerValues))
                     {
                         string metaIntString = headerValues.First();
-						StreamWriter writer = new StreamWriter($"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/ResponseMessage.txt");
-						writer.Write(metaIntString);
-						writer.Dispose();
                         if (!string.IsNullOrEmpty(metaIntString))
                         {
                             int metadataInterval = int.Parse(metaIntString);

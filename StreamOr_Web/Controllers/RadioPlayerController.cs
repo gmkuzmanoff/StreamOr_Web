@@ -81,18 +81,22 @@ namespace StreamOr_Web.Controllers
             string localUserDir = string.Empty;
             string localUserFile = string.Empty;
 
+            //Create local user directory
+            localUserDir = $"{Environment.CurrentDirectory}\\files\\{userId}";
+            //Create local user m3u file
+            localUserFile = $"{localUserDir}\\{userId}.m3u";
+            StreamWriter writer = new StreamWriter(localUserFile);
+
             if (entity != null && entity.OwnerId == userId)
             {
-                //Create local user directory
-                localUserDir = $"{Environment.CurrentDirectory}\\files\\{userId}";
-                //Create local user m3u file
-                localUserFile = $"{localUserDir}\\{userId}.m3u";
-                StreamWriter writer = new StreamWriter(localUserFile);
                 writer.WriteLine(CreateM3uPlaylist(model.Url, model.Title, model.Group, model.LogoUrl));
-                writer.Close(); 
+                writer.Close();
+                return PhysicalFile(localUserFile, "application/m3u", $"{model.Title}.m3u");
             }
 
-            return PhysicalFile(localUserFile, "application/m3u", $"{model.Title}.m3u");
+            writer.WriteLine("Status Code 401 \nUnauthorized");
+            writer.Close();
+            return PhysicalFile(localUserFile, "application/txt", "Unauthorized.txt");
         }
 
         [HttpPost]

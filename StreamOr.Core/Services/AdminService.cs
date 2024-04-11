@@ -21,7 +21,7 @@ namespace StreamOr.Core.Services
             this.logger = logger;
         }
 
-        public async Task<Radio> FindTargetAsync(string id)
+        public async Task<Radio?> FindTargetAsync(string id)
         {
             return await context.Radios
                 .AsNoTracking()
@@ -40,7 +40,8 @@ namespace StreamOr.Core.Services
                     Group = x.Group,
                     Bitrate = x.Bitrate
                 })
-                .FirstOrDefaultAsync(x => x.Id == HttpUtility.UrlDecode(id));
+                .Where(x => x.Id == HttpUtility.UrlDecode(id))
+                .FirstOrDefaultAsync();
         }
 
         public async Task<AdminQueryServiceModel> AllAsync(
@@ -81,11 +82,12 @@ namespace StreamOr.Core.Services
             return await context.Users
                 .AsNoTracking()
                 .Select(x => x.UserName)
+                .Where(x => x != "admin@gmail.com")
                 .Distinct()
                 .ToListAsync();
         }
 
-        public async Task<Radio> DeleteEntityAsync(string id)
+        public async Task<Radio?> DeleteEntityAsync(string id)
         {
             var radio = await context.Radios.FindAsync(HttpUtility.UrlDecode(id));
             if (radio != null)
