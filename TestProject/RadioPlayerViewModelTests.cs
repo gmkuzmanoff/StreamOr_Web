@@ -3,15 +3,15 @@
 namespace TestProject
 {
     [TestFixture]
-    public class RadioViewModelTests
+    public class RadioPlayerViewModelTests
     {
-        private RadioViewModel model;
+        private RadioPlayerViewModel model;
         private string[] images;
 
         [SetUp]
         public void Setup()
         {
-            model = new RadioViewModel();
+            model = new RadioPlayerViewModel();
             images = new[] { "https://gmkuzmanoff.free.bg/images/STREAMOR/P1.jpg",
                 "https://gmkuzmanoff.free.bg/images/STREAMOR/P2.jpg",
                 "https://gmkuzmanoff.free.bg/images/STREAMOR/P3.jpg",
@@ -24,10 +24,10 @@ namespace TestProject
         [TestCase(null)]
         [TestCase("")]
         [TestCase(" ")]
-        public void Test_Title(string? title)
+        public void Test_Title(string title)
         {
             model.Title = title;
-            Assert.That(model.Title, Is.EqualTo("Unknown title"), 
+            Assert.That(model.Title, Is.EqualTo("Unknown title"),
                 $"Model title != {model.Title}!");
         }
 
@@ -35,7 +35,7 @@ namespace TestProject
         [TestCase(null)]
         [TestCase("")]
         [TestCase(" ")]
-        public void Test_LogoUrl(string? logoUrl)
+        public void Test_LogoUrl(string logoUrl)
         {
             model.LogoUrl = logoUrl;
             Assert.That(model.LogoUrl, Is.AnyOf(images),
@@ -46,7 +46,7 @@ namespace TestProject
         [TestCase(null)]
         [TestCase("")]
         [TestCase(" ")]
-        public void Test_Genre(string? genre)
+        public void Test_Genre(string genre)
         {
             model.Genre = genre;
             Assert.That(model.Genre, Is.EqualTo("various"),
@@ -57,7 +57,7 @@ namespace TestProject
         [TestCase(null)]
         [TestCase("")]
         [TestCase(" ")]
-        public void Test_Description(string? description)
+        public void Test_Description(string description)
         {
             model.Genre = "";
             model.Description = description;
