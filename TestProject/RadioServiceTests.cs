@@ -1,13 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Moq;
+using NUnit.Framework.Internal;
 using StreamOr.Core.Contracts;
 using StreamOr.Core.Models.Radio;
 using StreamOr.Core.Services;
 using StreamOr.Infrastructure.Data;
-using StreamOr.Infrastructure.Data.Models;
-using Moq;
-using Microsoft.Extensions.Logging;
-using NUnit.Framework.Internal;
-using System.Text.RegularExpressions;
 
 namespace TestProject
 {
@@ -59,22 +57,24 @@ namespace TestProject
         [Test]
         public async Task Test_AddNewRadio()
         {
+            int radiosCountBeforeAdd = context.Radios.Count();
             await radioService.AddNewRadioAsync(radioFormViewModel, userId);
             Assert.IsTrue(context.Radios.Any(x => x.Id == targetRadioId),
                 "There is no entity in database with this Id!");
-            Assert.That(context.Radios.Count(),Is.EqualTo(11),
-                "Radios count != 11" );
+            Assert.That(context.Radios.Count(),Is.EqualTo(radiosCountBeforeAdd + 1),
+                $"Radios count after adding new != {radiosCountBeforeAdd + 1}" );
         }
 
         [Test]
         public async Task Test_DeleteRadio()
         {
             await radioService.AddNewRadioAsync(radioFormViewModel, userId);
+            int radiosCountBeforeDelete = context.Radios.Count();
             await radioService.DeleteEntityAsync(targetRadioId);
             Assert.IsTrue(context.Radios.All(x => x.Id != $"{userId}-{radioFormViewModel.Url}"),
                 "There is no entity in database with this Id!");
-            Assert.That(context.Radios.Count(), Is.EqualTo(10), 
-                "Radios count != 10");
+            Assert.That(context.Radios.Count(), Is.EqualTo(radiosCountBeforeDelete - 1),
+                $"Radios count after delete != {radiosCountBeforeDelete - 1}");
         }
 
         [Test]
@@ -88,10 +88,11 @@ namespace TestProject
         [Test]
         public async Task Test_GetGroupsAsync()
         {
+            int groupsCount = context.Groups.Count();
             ICollection<GroupViewModel> groups = new List<GroupViewModel>();
             groups = await radioService.GetGroupsAsync();
-            Assert.That(groups.Count, Is.EqualTo(11),
-                "Group count != 11");
+            Assert.That(groups.Count, Is.EqualTo(groupsCount),
+                $"Group count != {groupsCount}");
         }
 
         [Test]
@@ -128,10 +129,11 @@ namespace TestProject
         [Test]
         public async Task Test_AllGroupsNamesAsync()
         {
+            int groupsCount = context.Groups.Count();
             ICollection<string> groupNames = new List<string>();
             groupNames = await radioService.AllGroupsNamesAsync();
-            Assert.That(groupNames.Count, Is.EqualTo(11),
-                "Names count != 11");
+            Assert.That(groupNames.Count, Is.EqualTo(groupsCount),
+                $"Names count != {groupsCount}");
         }
 
         [TearDown]

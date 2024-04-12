@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StreamOr.Core.Contracts;
-using StreamOr.Core.Models.Radio;
+using StreamOr_Web.Areas.Admin.Models;
 using static StreamOr.Infrastructure.Constants.RoleConstants;
 
 namespace StreamOr_Web.Areas.Admin.Controllers

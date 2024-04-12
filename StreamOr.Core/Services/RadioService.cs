@@ -5,7 +5,6 @@ using StreamOr.Core.Enumerations;
 using StreamOr.Core.Models.Radio;
 using StreamOr.Infrastructure.Data;
 using StreamOr.Infrastructure.Data.Models;
-using System.Security.Claims;
 using System.Web;
 using static StreamOr.Infrastructure.Constants.RadioMetadata;
 

@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using StreamOr.Core.Models.Radio;
+using System.ComponentModel.DataAnnotations;
 
-namespace StreamOr.Core.Models.Radio
+namespace StreamOr_Web.Areas.Admin.Models
 {
     public class AllRadiosAdminQueryModel
     {
