@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using StreamOr.Core.Contracts;
 using StreamOr.Core.Models.Radio;
-using System.Security.Claims;
 using static StreamOr.Infrastructure.Constants.RoleConstants;
 
 namespace StreamOr_Web.Areas.Admin.Controllers
 {
     [Authorize(Roles = AdminRole)]
     [Area(AdminAreaName)]
+    [Route("admin/details")]
     public class AdminDetailsController : Controller
     {
         private readonly IAdminService adminService;

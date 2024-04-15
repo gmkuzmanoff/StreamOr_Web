@@ -7,7 +7,8 @@ using static StreamOr.Infrastructure.Constants.RoleConstants;
 namespace StreamOr_Web.Areas.Admin.Controllers
 {
     [Authorize(Roles = AdminRole)]
-    [Area("Admin")]
+    [Area(AdminAreaName)]
+    [Route("admin/wall")]
     public class AdminController : Controller
     {
         private readonly IAdminService adminService;

@@ -8,6 +8,7 @@ namespace StreamOr_Web.Areas.Admin.Controllers
 {
     [Authorize(Roles = AdminRole)]
     [Area(AdminAreaName)]
+    [Route("admin/delete")]
     public class AdminDeleteController : Controller
     {
         private readonly IAdminService adminService;
