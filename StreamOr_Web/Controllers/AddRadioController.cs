@@ -7,6 +7,7 @@ using System.Security.Claims;
 namespace StreamOr_Web.Controllers
 {
     [Authorize]
+    [Route("add_new_radio")]
     public class AddRadioController : Controller
     {
         private readonly IRadioService radioService;

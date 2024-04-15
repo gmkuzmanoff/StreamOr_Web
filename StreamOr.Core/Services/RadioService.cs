@@ -146,6 +146,23 @@ namespace StreamOr.Core.Services
             return radio;
         }
 
+        public RadioPlayerViewModel RadioForPlayer(Radio? radio)
+        {
+            return new RadioPlayerViewModel()
+            {
+                Id = radio.Id,
+                Title = radio.Title,
+                Url = radio.Url,
+                Genre = radio.Genre,
+                Description = radio.Description,
+                LogoUrl = radio.LogoUrl,
+                OwnerId = radio.OwnerId,
+                Group = radio.Group.Name,
+                IsFavorite = radio.IsFavorite.ToString().ToLower(),
+                Bitrate = radio.Bitrate.ToString()
+            };
+        }
+
         public async Task EditIsFavoriteAsync(RadioPlayerViewModel model, string userId)
         {
             var entity = await context.Radios.FindAsync(HttpUtility.UrlDecode(model.Id));

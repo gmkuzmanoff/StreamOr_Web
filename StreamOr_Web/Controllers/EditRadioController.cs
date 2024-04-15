@@ -10,6 +10,7 @@ using System.Security.Claims;
 namespace StreamOr_Web.Controllers
 {
     [Authorize]
+    [Route("edit")]
     public class EditRadioController : Controller
     {
         private readonly IRadioService radioService;

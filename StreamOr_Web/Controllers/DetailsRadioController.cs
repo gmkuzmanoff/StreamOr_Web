@@ -8,6 +8,7 @@ using static StreamOr.Infrastructure.Constants.RoleConstants;
 namespace StreamOr_Web.Controllers
 {
     [Authorize]
+    [Route("details")]
     public class DetailsRadioController : Controller
     {
         private readonly IRadioService radioService;

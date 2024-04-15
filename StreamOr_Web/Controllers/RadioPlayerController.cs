@@ -34,19 +34,7 @@ namespace StreamOr_Web.Controllers
             {
                 return Unauthorized();
             }
-            var model = new RadioPlayerViewModel()
-            {
-                Id = entity.Id,
-                Title = entity.Title,
-                Url = entity.Url,
-                Genre = entity.Genre,
-                Description = entity.Description,
-                LogoUrl = entity.LogoUrl,
-                OwnerId = entity.OwnerId,
-                Group = entity.Group.Name,
-                IsFavorite = entity.IsFavorite.ToString().ToLower(),
-                Bitrate = entity.Bitrate.ToString()
-            };
+            var model = radioService.RadioForPlayer(entity);
             //Create local user directory if not exist already
             string localUserDir = $"{Environment.CurrentDirectory}\\files\\{userId}";
             Directory.CreateDirectory(localUserDir);

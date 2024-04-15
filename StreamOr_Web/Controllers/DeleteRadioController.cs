@@ -8,6 +8,7 @@ using static StreamOr.Infrastructure.Constants.RoleConstants;
 namespace StreamOr_Web.Controllers
 {
     [Authorize]
+    [Route("delete")]
     public class DeleteRadioController : Controller
     {
         private readonly IRadioService radioService;
