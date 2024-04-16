@@ -8,7 +8,6 @@ using static StreamOr.Infrastructure.Constants.RoleConstants;
 namespace StreamOr_Web.Controllers
 {
     [Authorize]
-    [Route("collection")]
 	public class RadioController : Controller
 	{
 		private readonly IRadioService radioService;
@@ -21,7 +20,8 @@ namespace StreamOr_Web.Controllers
 		}
 		
 		[HttpGet]
-		public async Task<IActionResult> Collection([FromQuery]AllRadiosQueryModel query)
+        [Route("collection")]
+        public async Task<IActionResult> Collection([FromQuery]AllRadiosQueryModel query)
 		{
             if (User.IsInRole(AdminRole))
             {

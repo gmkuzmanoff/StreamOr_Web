@@ -1,4 +1,4 @@
 #EXTM3U
-#EXTINF:-1 group-title="Electronic" tvg-logo="https://i1.sndcdn.com/avatars-000628757292-l5ks2r-t240x240.jpg", INSOMNIAFM | Electronic Music
-http://insomniafm.cloudrad.io/;@shoutcast
+#EXTINF:-1 group-title="Electronic" tvg-logo="https://gmkuzmanoff.free.bg/images/STREAMOR/P3.jpg", BTX Dark Progressive 
+http://btxradio.mine.nu:8000/dark
 

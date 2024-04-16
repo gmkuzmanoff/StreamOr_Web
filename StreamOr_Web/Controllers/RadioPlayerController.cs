@@ -22,6 +22,7 @@ namespace StreamOr_Web.Controllers
         }
 
         [HttpGet]
+        [Route("play/{id}")]
         public async Task<IActionResult> Play(string id)
         {
             string userId = GetUserId();
@@ -41,13 +42,15 @@ namespace StreamOr_Web.Controllers
 
             return View(model);
         }
-        
+
+        [Route("play_in_new_tab")]
         public IActionResult PlayInNewTab(string url)
         {
             return Redirect(url);
         }
 
         [HttpGet]
+        [Route("download_m3u")]
         public async Task<FileResult> GetPlaylist(string id)
         {
             string userId = GetUserId();
